@@ -1,0 +1,726 @@
+[[AdvancedFormat]] 
+[[Block:Item 1]]
+
+
+[[Question:DB]]
+People who inject drugs should be able to learn safe injection practices.
+[[ID:Item1]]
+
+[[Question:TextEntry:Essay]]
+In your own words, how would you explain “safe injection practices”?
+[[ID:Comp1]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para1]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment1]]
+[[Block:Item 2]]
+
+
+[[Question:DB]]
+People should have access to tools for safer sex (like condoms, STD tests).
+[[ID:Item2]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para2]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment2]]
+[[Block:Item 3]]
+
+
+[[Question:DB]]
+People who use drugs should have access to naloxone/NARCAN®.
+[[ID:Item3]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “naloxone/NARCAN®”?
+[[ID:Comp3]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para3]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment3]]
+[[Block:Item 4]]
+
+
+[[Question:DB]]
+The general public should have access to naloxone/NARCAN®.
+[[ID:Item4]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “naloxone/NARCAN®”?
+[[ID:Comp4]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para4]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment4]]
+[[Block:Item 5]]
+
+
+[[Question:DB]]
+Police officers should have access to naloxone/NARCAN®.
+[[ID:Item5]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “naloxone/NARCAN®”?
+[[ID:Comp5]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para5]]
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment5]]
+
+[[Block:Item 6]]
+
+[[Question:DB]]
+People who use drugs should have access to tools to test what’s in their drugs.
+[[ID:Item6]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para6]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment6]]
+
+[[Block:Item 7]]
+
+[[Question:DB]]
+People who use drugs should have access to safe injection supplies (sterile needles and syringes).
+[[ID:Item7]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para7]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment7]]
+
+[[Block:Item 8]]
+
+[[Question:DB]]
+People who use drugs should have access to safe inhalation supplies (glass stems and pipes).
+[[ID:Item8]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para8]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment8]]
+
+[[Block:Item 9]]
+
+[[Question:DB]]
+People who actively use drugs should have access to therapy/counseling.
+[[ID:Item9]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para9]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment9]]
+
+[[Block:Item 10]]
+
+[[Question:DB]]
+People who return to using drugs after a period of abstinence should be allowed to continue in treatment.
+[[ID:Item10]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “period of abstinence”?
+[[ID:Comp10]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para10]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment10]]
+
+[[Block:Item 11]]
+
+[[Question:DB]]
+Counseling should not be a prerequisite for Medications for Addiction Treatment (buprenorphine, methadone, or naltrexone).
+[[ID:Item11]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “Medications for Addiction Treatment (buprenorphine, methadone, or naltrexone)”?
+[[ID:Comp11]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para11]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment11]]
+
+
+[[Block:Item 12]]
+
+[[Question:DB]]
+Sobriety should not be a prerequisite for Medications for Addiction Treatment (buprenorphine, methadone, or naltrexone).
+[[ID:Item12]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “Medications for Addiction Treatment (buprenorphine, methadone, or naltrexone)”?
+[[ID:Comp12]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para12]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment12]]
+
+[[Block:Item 13]]
+ 
+[[Question:DB]]
+Possession of “drug paraphernalia”, like syringes and pipes, should be legal to have.
+[[ID:Item13]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para13]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment13]]
+
+[[Block:Item 14]]
+
+[[Question:DB]]
+People who seek medical assistance for overdoses should be protected from drug charges, arrests, and prosecutions.
+[[ID:Item14]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “overdoses”?
+[[ID:Comp14]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para14]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment14]]
+
+[[Block:Item 15]]
+
+[[Question:DB]]
+Sobriety should not be a requirement to access public housing.
+[[ID:Item15]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “public housing”?
+[[ID:Comp15]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para15]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment15]]
+
+[[Block:Item 16]]
+
+[[Question:DB]]
+Possession of all drugs should be decriminalized (possession would not lead to legal repercussions).
+[[ID:Item16]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para16]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment16]]
+
+[[Block:Item 17]]
+
+[[Question:DB]]
+It should be legal for adults to purchase drugs from a dispensary/shop.
+[[ID:Item17]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para17]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment17]]
+
+[[Block:Item 18]]
+
+[[Question:DB]]
+People who use drugs should have access to supervised places where they can consume drugs safely.
+[[ID:Item18]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para18]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment18]]
+
+[[Block:Item 19]]
+
+[[Question:DB]]
+People who use drugs should have access to a legal, non-contaminated drug supply.
+[[ID:Item19]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “a legal, non-contaminated drug supply”?
+[[ID:Comp19]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para19]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment19]]
+
+[[Block:Item 20]]
+
+[[Question:DB]]
+People will always use drugs.
+[[ID:Item20]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para20]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment20]]
+
+[[Block:Item 21]]
+
+[[Question:DB]]
+People should be able to use drugs safely.
+[[ID:Item21]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para21]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment21]]
+
+[[Block:Item 22]]
+
+[[Question:DB]]
+People who use drugs should be treated with respect.
+[[ID:Item22]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para22]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment22]]
+
+[[Block:Item 23]]
+
+[[Question:DB]]
+Poverty can increase the risk of harm for people who use drugs.
+[[ID:Item23]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para23]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment23]]
+
+[[Block:Item 24]]
+
+[[Question:DB]]
+Racism can increase the risk of harm for people who use drugs.
+[[ID:Item24]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para24]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment24]]
+
+[[Block:Item 25]]
+
+[[Question:DB]]
+Gender-based discrimination can increase the risk of harm for people who use drugs.
+[[ID:Item25]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para25]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment25]]
+
+[[Block:Item 26]]
+
+[[Question:DB]]
+Some ways of using drugs are safer than others.
+[[ID:Item26]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para26]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment26]]
+
+[[Block:Item 27]]
+
+[[Question:DB]]
+People who use drugs deserve to live good lives.
+[[ID:Item27]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para27]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment27]]
+
+[[Block:Item 28]]
+
+[[Question:DB]]
+Reducing drug use is a reasonable goal for people who use drugs.
+[[ID:Item28]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para28]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment28]]
+
+[[Block:Item 29]]
+
+[[Question:DB]]
+Some people who use drugs cannot be expected to quit immediately.
+[[ID:Item29]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para29]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment29]]
+
+[[Block:Item 30]]
+
+[[Question:DB]]
+People who use drugs should be involved in creating the programs and policies that serve them.
+[[ID:Item30]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “programs and policies”?
+[[ID:Comp30]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para30]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment30]]
+
+[[Block:Item 31]]
+
+[[Question:DB]]
+People in recovery from drug use should be involved in creating the programs and policies that serve them.
+[[ID:Item31]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “programs and policies”?
+[[ID:Comp31]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para31]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment31]]
+
+
+[[Block:Item 32]]
+
+[[Question:DB]]
+Relapse is a part of the recovery process.
+[[ID:Item32]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “recovery process”?
+[[ID:Comp32]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para32]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment32]]
+
+
+[[Block:Item 33]]
+
+[[Question:DB]]
+It is possible to live a healthy life without stopping drug use.
+[[ID:Item33]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para33]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment33]]
+
+
+[[Block:Item 34]]
+
+[[Question:DB]]
+People who use drugs should not be forced into treatment.
+[[ID:Item34]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para34]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment34]]
+
+
+[[Block:Item 35]]
+
+[[Question:DB]]
+Harm reduction programs are an effective use of funding.
+[[ID:Item35]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “harm reduction programs”?
+[[ID:Comp35]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para35]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment35]]
+
+
+[[Block:Item 36]]
+
+[[Question:DB]]
+Using drugs is immoral.
+[[ID:Item36]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “immoral”?
+[[ID:Comp36]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para36]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment36]]
+
+
+[[Block:Item 37]]
+
+[[Question:DB]]
+Drug use has benefits.
+[[ID:Item37]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para37]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment37]]
+
+
+[[Block:Item 38]]
+
+[[Question:DB]]
+Harm reduction complements traditional addiction prevention, treatment, and recovery services.
+[[ID:Item38]]
+
+[[Question:TE:Essay]]
+In your own words, how would you explain “traditional addiction prevention, treatment, and recovery services”?
+[[ID:Comp38]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para38]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment38]]
+
+
+[[Block:Item 39]]
+
+[[Question:DB]]
+People who use drugs need more than just safety.
+[[ID:Item39]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para39]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment39]]
+
+
+[[Block:Item 40]]
+
+[[Question:DB]]
+People who use drugs benefit society. 
+[[ID:Item40]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para40]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment40]]
+
+
+[[Block:Item 41]]
+
+[[Question:DB]]
+Reducing the negative consequences of drug use encourages more people to use drugs.
+[[ID:Item41]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para41]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment41]]
+
+
+[[Block:Item 42]]
+
+[[Question:DB]]
+Making it safer to use drugs keeps people alive.
+[[ID:Item42]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para42]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment42]]
+
+
+[[Block:Item 43]]
+
+[[Question:DB]]
+Fewer people will die if drug use is safer.
+[[ID:Item43]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para43]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment43]]
+
+
+[[Block:Item 44]]
+
+[[Question:DB]]
+People will use more drugs if it is safer.
+[[ID:Item44]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para44]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment44]]
+
+
+[[Block:Item 45]]
+
+[[Question:DB]]
+People who use drugs will naturally end up homeless.
+[[ID:Item45]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para45]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment45]]
+
+
+[[Block:Item 46]]
+
+[[Question:DB]]
+Drugs make the world worse.
+[[ID:Item46]]
+
+[[Question:TextEntry:Essay]]
+In your own words, what do you think this item means?
+[[ID:Para46]]
+
+[[Question:TextEntry:Essay]]
+Is there anything you don’t understand or would change? If so, what?
+[[ID:Comment46]]
+
+
