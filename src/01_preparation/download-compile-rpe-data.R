@@ -33,7 +33,7 @@ rpe <- rpe %>%
 
 question <- rpe %>% 
   # Add ID number
-  mutate(id = row_number())
+  mutate(id = row_number()) %>% 
   # Select relevant columns
   select(id,
          starts_with(c("resp", "exp-resp", "Comp", "Para", "Comment"))) %>% 
@@ -58,7 +58,7 @@ question <- rpe %>%
   arrange(desc(item)) %>% 
   # Combine with question text
   left_join(items, by = c("item" = "number")) %>% 
-  # Add group assignements
+  # Add group assignments
   left_join(data.frame(Group = rep(1:5, length.out = 46), item = as.character(1:46))) %>% 
   # Select & rename columns of interest
   select(`Participant ID` = id, 
@@ -70,7 +70,7 @@ question <- rpe %>%
  
 # Set sheet names for excel doc
 sheet_names <- list(`Group 1` = question[question$Group == 1,],
-                    `Group 2` = question[question$Group == 1,],
+                    `Group 2` = question[question$Group == 2,],
                     `Group 3` = question[question$Group == 3,],
                     `Group 4` = question[question$Group == 4,],
                     `Group 5` = question[question$Group == 5,])
