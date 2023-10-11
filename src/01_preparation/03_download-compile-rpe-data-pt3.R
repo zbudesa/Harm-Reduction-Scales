@@ -73,8 +73,8 @@ question <- rpe %>%
 # Set sheet names for excel doc
 sheet_names <- list(`Item 1` = question[question$`Question Number` == 1,],
                     `Item 2` = question[question$`Question Number` == 2,],
-                    `Item 3` = question[question$`Question Number` == 3,],
-                    `Item 4` = question[question$`Question Number` == 4,])
+                    `Item 3` = question[question$`Question Number` == 11,],
+                    `Item 4` = question[question$`Question Number` == 12,])
 
 # Write file
 openxlsx::write.xlsx(sheet_names, file = "data/clean/003_RPE-Data_stage-3.xlsx") 
