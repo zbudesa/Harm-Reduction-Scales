@@ -88,8 +88,7 @@ df %>%
                                 )))), 
               na.rm = TRUE),
     .after = "race-eth-choice") %>% 
-  filter(multiracial > 1) %>% 
-  View()
+  filter(multiracial > 1)
   
 
 df <- df %>% 
@@ -149,6 +148,8 @@ df <- df %>%
       ) 
   ) %>% 
   select(-`race-eth-id_2`)
+
+
 
 # Write to file
 write.csv(df, "data/clean/20231011_hr-scale-exploratory-data.csv")
