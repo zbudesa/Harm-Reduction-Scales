@@ -24,11 +24,10 @@ hr2 <- df %>%
   select(starts_with("q"), -Q_RecaptchaScore)
 
 # Correlation Matrix
-cor.plot(hr2, 
-         sort = TRUE, 
-         upper = FALSE, 
-         pval = FALSE,
-         gr = colorRampPalette(c("#B52127", "white", "#2171B5")))
+# cor.plot(hr, 
+#          upper = FALSE, 
+#          pval = FALSE,
+#          gr = colorRampPalette(c("#B52127", "white", "#2171B5")))
 hrMatrix <- cor(hr, use = "na.or.complete")
 View(round(hrMatrix, 2))
 
@@ -40,12 +39,12 @@ hr %>%
     mean = mean(value, na.rm = TRUE), 
     sd = sd(value, na.rm = TRUE))
 
-df %>% 
-  pivot_longer(c(q3,q4)) %>% 
-  ggplot() + 
-  aes(x = name, y = value) + 
-  geom_jitter() + 
-  facet_wrap(~name)
+# df %>% 
+#   pivot_longer(c(q3,q4)) %>% 
+#   ggplot() + 
+#   aes(x = name, y = value) + 
+#   geom_jitter() + 
+#   facet_wrap(~name)
 
 df %>% 
   pivot_longer(c(q7,q8)) %>%
@@ -72,6 +71,10 @@ inspect$response.freq %>%
 library(EFA.dimensions)
 
 ld <- LOCALDEP(hr)
+
+View(
+  data.frame(ld$localdep_stats)
+)
 
 # Building Dataset with Removed Local Dependence Items
 hr.ld <-
@@ -254,4 +257,20 @@ hrMatrix12 <-
 fa13 <- fa(hrMatrix12, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
 psych::print.psych(fa13, sort = "TRUE", cut = .3)
 
+check_factorstructure(hr.ld %>% 
+                        select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11, q28)))
+
+# Build Scales and Check Alphas ----
+scale1 <- hr.ld %>% 
+  select(q1, q3, q6, q7, q13, q14, q16, q18, q19, q21,q39)
+scale2 <- hr.ld %>% 
+  select(q33, q36, q38, q41, q42)
+scale3 <- hr.ld %>% 
+  select(q2, q9, q10, q23, q27, q29, q30)
+
+scales <- c(scale1, scale2, scale3)
+
+psych::alpha(scale1, check.keys = TRUE)
+psych::alpha(scale2, check.keys = TRUE)
+psych::alpha(scale3, check.keys = TRUE)
 
