@@ -199,5 +199,59 @@ hrMatrix7 <-
 fa8 <- fa(hrMatrix7, n.obs = 301, nfactors = 4, rotate = "oblimin", cor = "poly")
 psych::print.psych(fa8, sort = "TRUE", cut = .3)
 
+# Model 9 ----
+# new correlation matrix
+hrMatrix8 <- 
+  POLYCHORIC_R(
+    hr.ld %>% 
+      select(-c(q17, q12, q43, q15, q35, q37, q26, q34)))
+
+# EFA
+fa9 <- fa(hrMatrix8, n.obs = 301, nfactors = 4, rotate = "oblimin", cor = "poly")
+psych::print.psych(fa9, sort = "TRUE", cut = .3)
+
+# Model 10 ----
+# new correlation matrix
+hrMatrix9 <- 
+  POLYCHORIC_R(
+    hr.ld %>% 
+      select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44)))
+
+# EFA
+fa10 <- fa(hrMatrix9, n.obs = 301, nfactors = 4, rotate = "oblimin", cor = "poly")
+psych::print.psych(fa10, sort = "TRUE", cut = .3)
+
+# Model 11 ----
+# new correlation matrix
+hrMatrix10 <- 
+  POLYCHORIC_R(
+    hr.ld %>% 
+      select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20)))
+
+# EFA
+fa11 <- fa(hrMatrix10, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
+psych::print.psych(fa11, sort = "TRUE", cut = .3)
+
+# Model 12 ----
+# new correlation matrix
+hrMatrix11 <- 
+  POLYCHORIC_R(
+    hr.ld %>% 
+      select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11)))
+
+# EFA
+fa12 <- fa(hrMatrix11, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
+psych::print.psych(fa12, sort = "TRUE", cut = .3)
+
+# Model 13 ----
+# new correlation matrix
+hrMatrix12 <- 
+  POLYCHORIC_R(
+    hr.ld %>% 
+      select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11, q28)))
+
+# EFA
+fa13 <- fa(hrMatrix12, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
+psych::print.psych(fa13, sort = "TRUE", cut = .3)
 
 
