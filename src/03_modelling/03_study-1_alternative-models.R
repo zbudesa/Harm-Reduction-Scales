@@ -515,3 +515,30 @@ hrMatrix_alt12 <-
 fa.alt12 <- fa(hrMatrix_alt12, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
 psych::print.psych(fa.alt12, sort = "TRUE", cut = .3)
 # Success! How different is this from the existing model?
+
+## Build Scales 
+altscale1 <- c("q1", "q7", "q18", "q19", "q6", "q21", "q3", "q13", "q16", "q39")
+altscale2 <- c("q42", "q36", "q38", "q33", "q15", "q41", "q34")
+altscale3 <- c("q9", "q10", "q22", "q29", "q30", "q23")
+
+### Alphas
+psych::alpha(df %>% select(all_of(altscale1)),
+             check.keys = TRUE)
+
+psych::alpha(df %>% select(all_of(altscale2)),
+             check.keys = TRUE)
+
+psych::alpha(df %>% select(all_of(altscale3)),
+             check.keys = TRUE)
+
+
+
+
+
+
+
+
+
+
+
+

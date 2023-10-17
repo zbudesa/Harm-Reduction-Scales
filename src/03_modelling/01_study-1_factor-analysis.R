@@ -269,8 +269,18 @@ scale3 <- hr.ld %>%
   select(q2, q9, q10, q23, q27, q29, q30)
 
 scales <- c(scale1, scale2, scale3)
-
-psych::alpha(scale1, check.keys = TRUE)
+attributes(
+psych::alpha(scale1, check.keys = TRUE))
 psych::alpha(scale2, check.keys = TRUE)
 psych::alpha(scale3, check.keys = TRUE)
+
+
+library(mirt)
+irt <- mirt(scale1, model = 1, 
+            itemtype = "graded")
+
+plot(irt)
+
+
+
 
