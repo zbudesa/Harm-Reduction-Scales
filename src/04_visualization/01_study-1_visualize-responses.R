@@ -10,12 +10,19 @@ library(tidyverse)
 df <- read.csv("data/clean/20231011_hr-scale-exploratory-data.csv")
 
 # Build Scales and Check Alphas ----
-scale1 <- hr.ld %>% 
-  select(q1, q3, q6, q7, q13, q14, q16, q18, q19, q21,q39)
-scale2 <- hr.ld %>% 
-  select(q33, q36, q38, q41, q42)
-scale3 <- hr.ld %>% 
-  select(q2, q9, q10, q23, q27, q29, q30)
+scale1 <- df %>% 
+  select(q1, q6, q7, q14, q16, q18, q19, q21, q39, q13)
+scale2 <- df %>% 
+  select(q33, q36, q38, q42) 
+scale3 <- df %>% 
+  select(q9, q2, q20, q23, q29, q12, q10, q28, q32) 
+
+# scale3.alt <- df %>% 
+#   select(q9, q2, q20, q23, q28, q29, q12, q10)
+
+psych::alpha(df %>% 
+               select(q21,q19,q13,q35,q14,q16,q39,q34), 
+             check.keys = TRUE)
 
 # Connect with Items
 library(qualtRics)
@@ -31,7 +38,7 @@ item <- survey_questions(surveys$id[surveys$name == "Harm Reduction Scales - Stu
 # Estimate alphas
 alpha1 <- psych::alpha(scale1, check.keys = TRUE)
 alpha2 <- psych::alpha(scale2, check.keys = TRUE)
-alpha3 <- psych::alpha(scale3, check.keys = TRUE)
+alpha3 <- psych::alpha(scale3.alt, check.keys = TRUE)
 
 # Visualize Responses
 ## Scale 1
@@ -146,5 +153,11 @@ items.3 <- data.frame(alpha3$response.freq) %>%
     axis.text.y = element_blank(),
     panel.background = element_blank()
   )
+
+library(patchwork)
+
+items.1a + items.1b
+
+
 
 

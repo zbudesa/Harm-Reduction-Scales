@@ -250,15 +250,12 @@ psych::print.psych(fa12, sort = "TRUE", cut = .3)
 # new correlation matrix
 hrMatrix12 <- 
   POLYCHORIC_R(
-    hr.ld %>% 
+    hr2 %>% 
       select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11, q28)))
 
 # EFA
 fa13 <- fa(hrMatrix12, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
 psych::print.psych(fa13, sort = "TRUE", cut = .3)
-
-check_factorstructure(hr.ld %>% 
-                        select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11, q28)))
 
 # Build Scales and Check Alphas ----
 scale1 <- hr.ld %>% 
@@ -268,18 +265,27 @@ scale2 <- hr.ld %>%
 scale3 <- hr.ld %>% 
   select(q2, q9, q10, q23, q27, q29, q30)
 
-scales <- c(scale1, scale2, scale3)
-attributes(
-psych::alpha(scale1, check.keys = TRUE))
+
+psych::alpha(scale1, check.keys = TRUE)
 psych::alpha(scale2, check.keys = TRUE)
 psych::alpha(scale3, check.keys = TRUE)
 
+# Compare to Model with failed attention checks removed
+# Model 13 ----
+# new correlation matrix
+hrMatrix12 <- 
+  POLYCHORIC_R(
+    hr2 %>% 
+      select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11, q28)) %>% 
+      select(-c(q4:q5, q25, q40,
+                q31, q8, q24, q45, 
+                q22, q32)))
 
-library(mirt)
-irt <- mirt(scale1, model = 1, 
-            itemtype = "graded")
+# EFA
+fa13 <- fa(hrMatrix12, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly")
+psych::print.psych(fa13, sort = "TRUE", cut = .3)
+# Only slight changes to fit
 
-plot(irt)
 
 
 
