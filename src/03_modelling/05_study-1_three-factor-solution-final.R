@@ -76,3 +76,64 @@ psych::alpha(df %>%
              check.keys = TRUE)
 
 
+library(GPArotation)
+
+d <- EFA.dimensions::POLYCHORIC_R(df %>% select(c(
+  # Factor 1
+  q1, q6, q7, q14, q16, q18, q19, q21, q39, q13,
+  # Factor 2
+  q33, q36, q38, q42, #q35, q41, 
+  # Factor 3
+  q9, q2, q20, q23, q29, q12, q10, q28, q32)))
+
+library(EFAtools)
+
+hr.ld <-
+  hr %>% 
+  select(-c(q4:q5, q25, q40,
+            q31, q8, q24, q45, 
+            q22, q29))
+
+mod_avg <- EFA_AVERAGE(hr.ld, n_factors = 5, rotation = "oblimin",
+                       method = "ML")
+
+mod_avg$fit_indices
+
+mod_avg$loadings$average
+
+
+mod_avg <- 
+  EFA_AVERAGE(hr.ld %>% 
+                select(
+                  -c(q44, q27, q43, q35,
+                     q37,  q11, q30,  #q28,
+                     q26, q3, q17, q13)
+                ), 
+              n_factors = 3, rotation = "oblimin",
+              method = "ML")
+
+mod_avg$fit_indices
+
+mod_avg$loadings$average
+
+f1 <- df %>% 
+  select(q1,q6,q7,q14,q16,q18,q19,q21,q39)
+f2 <- df %>% 
+  select(q15,q33,q34,q36,q38,q41,q42)
+f3 <- df %>% 
+  select(q2, q9,q10,q12,q20,q23,q28,q32)
+
+psych::alpha(f1, check.keys = TRUE)
+psych::alpha(f2, check.keys = TRUE)
+psych::alpha(f3, check.keys = TRUE)
+# It's the same solution!
+
+
+
+
+
+
+
+
+
+
