@@ -117,11 +117,11 @@ mod_avg$fit_indices
 mod_avg$loadings$average
 
 f1 <- df %>% 
-  select(q1,q6,q7,q14,q16,q18,q19,q21,q39)
+  select(q1,q6,q7,q18,q19,q21)
 f2 <- df %>% 
-  select(q15,q33,q34,q36,q38,q41,q42)
+  select(q36,q38,q42)
 f3 <- df %>% 
-  select(q2, q9,q10,q12,q20,q23,q28,q32)
+  select(q9,q20,q23,q28,q32)
 
 psych::alpha(f1, check.keys = TRUE)
 psych::alpha(f2, check.keys = TRUE)
