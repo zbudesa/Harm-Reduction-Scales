@@ -1,0 +1,120 @@
+"","qid","qname","question","force_resp","scale"
+"1","QID55","consent","<div style=""text-align: center;""><span style=""font-family:Arial,Helvetica,sans-serif;""><span style=""font-size:12pt""><span style=""font-weight:bold""><span style=""font-size:14.0pt"">University of Missouri&ndash;St. Louis</span></span></span><br />
+<span style=""font-size:12pt""><span style=""font-weight:bold""><span style=""font-size:14.0pt"">Informed Consent for Participation in Research Activities</span></span></span></span></div>
+<br />
+<span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;""><b>Project Title: Development of Harm Reduction Scales</b><br />
+<b>Principal Investigator:  Zach Budesa, PhD</b><br />
+<b>Department Name:  Addiction Science Team, UMSL-MIMH</b><br />
+<b>IRB Project Number:  </b>2097641</span></span>
+
+<ol>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">You are invited to participate in a research study. The purpose of this research is to develop measures of an individual&rsquo;s views and support for harm reduction as a practice.</span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">Your participation will involve answering the following survey questions about your feelings about harm reduction principles and practices. These questions will include information about drug use and drug-related harm reduction strategies. You will be asked to provide your response to the question, the reason for this response, your interpretation/paraphrase of the question, and any comments that you may have about it.</span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">For your time and effort, we will be offering compensation in the amount of $12.00 per hour via Prolific.</span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">There are no known risks associated with this research other than the potential for mild boredom or fatigue. </span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">There are no direct benefits for you participating in this study.</span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">Your participation is voluntary and you may choose not to participate in this research study or withdraw your consent at any time. You will NOT be penalized in any way should you choose not to participate or withdraw.</span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">We will do everything we can to protect your privacy. As part of this effort, your identity will not be revealed in any publication that may result from this study. In rare instances, a researcher&#39;s study must undergo an audit or program evaluation by an oversight agency (such as the Office for Human Research Protection) that would lead to disclosure of your data as well as any other information collected by the researcher. </span></span></li>
+	<li><span style=""font-size:16px;""><span style=""font-family:Arial,Helvetica,sans-serif;"">If you have any questions or concerns regarding this study, or if any problems arise, you may call the Investigator, Zach Budesa at 314-516-8498, or email at <a href=""mailto:zach.budesa@mimh.edu?subject=Harm%20Reduction%20Scales%20-%20Response%20Process%20Analysis%20Study%20IRB"">zach.budesa@mimh.edu</a>. You may also ask questions or state concerns regarding your rights as a research participant to the University of Missouri&ndash;St. Louis Office of Research Compliance, at 314-516-5972 or<a href=""mailto: irb@umsl.edu""> irb@umsl.edu</a>.</span></span></li>
+</ol>",FALSE,NA
+"2","QID3","q1","People who inject drugs should be able to do so in a way that prevents them from causing further harm to their health.
+",FALSE,"Scale 1"
+"3","QID4","q2","People should have access to tools for safer sex (like condoms, STD tests).
+",FALSE,NA
+"4","QID5","q3","People who use drugs should have access to naloxone/NARCAN.
+",FALSE,NA
+"5","QID6","q4","The general public should have access to naloxone/NARCAN.
+",FALSE,NA
+"6","QID7","q5","Police officers should have access to naloxone/NARCAN.
+",FALSE,NA
+"7","QID8","q6","People who use drugs should have access to tools to test what's in their drugs.
+",FALSE,"Scale 1"
+"8","QID9","q7","People who use drugs should have access to safe injection supplies (sterile needles and syringes).
+",FALSE,"Scale 1"
+"9","QID10","q8","People who use drugs should have access to safe inhalation supplies (glass stems and pipes).
+",FALSE,NA
+"10","QID11","q9","People who actively use drugs should have access to therapy/counseling.
+",FALSE,NA
+"11","QID12","q10","People who return to using drugs after a period of abstinence should be allowed to continue in treatment.
+",FALSE,NA
+"12","QID13","q11","Sobriety should be required for treatment.
+",FALSE,NA
+"13","QID14","q12","Medications used to treat addiction (buprenorphine, naltrexone, or methadone) are an appropriate treatment option for people who use drugs.
+",FALSE,NA
+"14","QID56","attn","Please select ""Somewhat disagree"" below.<br>",FALSE,NA
+"15","QID15","q13","Possession of ""drug paraphernalia"", like syringes and pipes, should be legal.
+",FALSE,"Scale 1"
+"16","QID16","q14","People who seek medical assistance for overdoses should be protected from drug charges, arrests, and prosecutions.
+",FALSE,NA
+"17","QID17","q15","Sobriety should not be a requirement to access public housing.
+",FALSE,NA
+"18","QID18","q16","Possession of all drugs should be decriminalized (possession would not lead to legal repercussions).
+",FALSE,"Scale 1"
+"19","QID19","q17","It should be legal for adults to purchase drugs from a dispensary/shop.
+",FALSE,NA
+"20","QID20","q18","People who use drugs should have access to supervised places where they can consume drugs safely.
+",FALSE,"Scale 1"
+"21","QID21","q19","People who use drugs should have access to a legal, non-contaminated drug supply.
+",FALSE,"Scale 1"
+"22","QID22","q20","People use drugs to escape.
+",FALSE,NA
+"23","QID23","q21","People should be able to use drugs safely.
+",FALSE,"Scale 1"
+"24","QID24","q22","People who use drugs should be treated with respect.
+",FALSE,NA
+"25","QID25","q23","Poverty affects the health of people who use drugs.
+",FALSE,NA
+"26","QID26","q24","Racism affects the health of people who use drugs.
+",FALSE,NA
+"27","QID27","q25","Gender-based discrimination affects the health of people who use drugs.
+",FALSE,NA
+"28","QID28","q26","Some ways of using drugs are safer than others.
+",FALSE,NA
+"29","QID29","q27","People who use drugs deserve to live good lives.
+",FALSE,NA
+"30","QID30","q28","Reducing drug use is a reasonable goal for people who use drugs.
+",FALSE,NA
+"31","QID31","q29","Some people who use drugs cannot be expected to quit immediately.
+",FALSE,NA
+"32","QID32","q30","People who use drugs should be involved in creating the programs and policies that serve them.
+",FALSE,NA
+"33","QID33","q31","People in recovery from drug use should be involved in creating the programs and policies that serve them.
+",FALSE,NA
+"34","QID34","q32","Relapse may be a part of the recovery process.
+",FALSE,NA
+"35","QID35","q33","It is possible to live a healthy life without stopping drug use.
+",FALSE,"Scale 2"
+"36","QID36","q34","People who use drugs should be forced into treatment.
+",FALSE,"Scale 2"
+"37","QID37","q35","Using drugs is immoral.
+",FALSE,"Scale 2"
+"38","QID38","q36","Drug use has benefits.
+",FALSE,"Scale 2"
+"39","QID39","q37","Harm reduction complements traditional addiction prevention, treatment, and recovery services.
+",FALSE,NA
+"40","QID40","q38","People who use drugs benefit society.
+",FALSE,"Scale 2"
+"41","QID41","q39","Reducing the negative consequences of drug use encourages more people to use drugs.
+",FALSE,"Scale 1"
+"42","QID42","q40","People will use more drugs if it is safer.
+",FALSE,NA
+"43","QID43","q41","People who use drugs will naturally end up homeless.
+",FALSE,"Scale 2"
+"44","QID44","q42","Drugs make the world worse.
+",FALSE,"Scale 2"
+"45","QID45","q43","Drug use will always be part of society.
+",FALSE,NA
+"46","QID46","q44","Chaotic drug use is a rational response to experiences like trauma, homelessness, hunger, and poverty.
+",FALSE,NA
+"47","QID47","q45","People who use drugs should be able to use medications used to treat addiction (buprenorphine, naltrexone, or methadone) for any length of time.
+",FALSE,NA
+"48","QID54","age","What is your current age?<br>",FALSE,NA
+"49","QID48","gid1","What is your gender identity?
+",FALSE,NA
+"50","QID49","gid2","Does your gender identity match your sex assigned at birth?",FALSE,NA
+"51","QID50","race-eth-id","Please select the terms that best represent your racial and ethnic identity.
+",FALSE,NA
+"52","QID51","race-eth-choice","Research requires us to categorize people in racial and ethnic terms. You may use the box below to self-describe how you would prefer to be categorized.<br>",FALSE,NA
+"53","QID52","ed","Please select your highest level of education
+",FALSE,NA
+"54","QID53","sud_hx","Have you ever been diagnosed with a substance use disorder?",FALSE,NA

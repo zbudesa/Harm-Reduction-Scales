@@ -1,0 +1,102 @@
+"","var_label","item"
+"1","q1","People who inject drugs should be able to do so in a way that prevents them from causing further harm to their health.
+"
+"2","q2","People should have access to tools for safer sex (like condoms, STD tests).
+"
+"3","q3","People who use drugs should have access to naloxone/NARCAN.
+"
+"4","q4","The general public should have access to naloxone/NARCAN.
+"
+"5","q5","Police officers should have access to naloxone/NARCAN.
+"
+"6","q6","People who use drugs should have access to tools to test what's in their drugs.
+"
+"7","q7","People who use drugs should have access to safe injection supplies (sterile needles and syringes).
+"
+"8","q8","People who use drugs should have access to safe inhalation supplies (glass stems and pipes).
+"
+"9","q9","People who actively use drugs should have access to therapy/counseling.
+"
+"10","q10","People who return to using drugs after a period of abstinence should be allowed to continue in treatment.
+"
+"11","q11","Sobriety should be required for treatment.
+"
+"12","q12","Medications used to treat addiction (buprenorphine, naltrexone, or methadone) are an appropriate treatment option for people who use drugs.
+"
+"13","attn","Please select ""Somewhat disagree"" below.<br>"
+"14","q13","Possession of ""drug paraphernalia"", like syringes and pipes, should be legal.
+"
+"15","q14","People who seek medical assistance for overdoses should be protected from drug charges, arrests, and prosecutions.
+"
+"16","q15","Sobriety should not be a requirement to access public housing.
+"
+"17","q16","Possession of all drugs should be decriminalized (possession would not lead to legal repercussions).
+"
+"18","q17","It should be legal for adults to purchase drugs from a dispensary/shop.
+"
+"19","q18","People who use drugs should have access to supervised places where they can consume drugs safely.
+"
+"20","q19","People who use drugs should have access to a legal, non-contaminated drug supply.
+"
+"21","q20","People use drugs to escape.
+"
+"22","q21","People should be able to use drugs safely.
+"
+"23","q22","People who use drugs should be treated with respect.
+"
+"24","q23","Poverty affects the health of people who use drugs.
+"
+"25","q24","Racism affects the health of people who use drugs.
+"
+"26","q25","Gender-based discrimination affects the health of people who use drugs.
+"
+"27","q26","Some ways of using drugs are safer than others.
+"
+"28","q27","People who use drugs deserve to live good lives.
+"
+"29","q28","Reducing drug use is a reasonable goal for people who use drugs.
+"
+"30","q29","Some people who use drugs cannot be expected to quit immediately.
+"
+"31","q30","People who use drugs should be involved in creating the programs and policies that serve them.
+"
+"32","q31","People in recovery from drug use should be involved in creating the programs and policies that serve them.
+"
+"33","q32","Relapse may be a part of the recovery process.
+"
+"34","q33","It is possible to live a healthy life without stopping drug use.
+"
+"35","q34","People who use drugs should be forced into treatment.
+"
+"36","q35","Using drugs is immoral.
+"
+"37","q36","Drug use has benefits.
+"
+"38","q37","Harm reduction complements traditional addiction prevention, treatment, and recovery services.
+"
+"39","q38","People who use drugs benefit society.
+"
+"40","q39","Reducing the negative consequences of drug use encourages more people to use drugs.
+"
+"41","q40","People will use more drugs if it is safer.
+"
+"42","q41","People who use drugs will naturally end up homeless.
+"
+"43","q42","Drugs make the world worse.
+"
+"44","q43","Drug use will always be part of society.
+"
+"45","q44","Chaotic drug use is a rational response to experiences like trauma, homelessness, hunger, and poverty.
+"
+"46","q45","People who use drugs should be able to use medications used to treat addiction (buprenorphine, naltrexone, or methadone) for any length of time.
+"
+"47","age","What is your current age?<br>"
+"48","gid1","What is your gender identity?
+"
+"49","gid2","Does your gender identity match your sex assigned at birth?"
+"50","race-eth-id","Please select the terms that best represent your racial and ethnic identity.
+"
+"51","race-eth-choice","Research requires us to categorize people in racial and ethnic terms. You may use the box below to self-describe how you would prefer to be categorized.<br>"
+"52","ed","Please select your highest level of education
+"
+"53","sud_hx","Have you ever been diagnosed with a substance use disorder?"

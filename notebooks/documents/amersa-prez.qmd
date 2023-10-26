@@ -1,0 +1,166 @@
+---
+title: "Development of Scales to Measure the Acceptance of Harm Reduction"
+author: Zach Budesa, Sarah Philips, Rithvik Kondai, Jennifer Lunceford, Lauren Green, Liz Connors, Katie Brown, Ryan Smith, Rashmi Ghonsagi, Rachel Winograd
+format: pptx
+---
+
+```{r}
+#| include: false
+
+library(psych)
+library(tidyverse)
+
+# Import data
+df <- read.csv("C:/Users/zrbxv2/OneDrive - University of Missouri/r_projs/Harm-Reduction-Scales/data/clean/20231025_hr-scale-confirmatory-data2.csv")
+
+items <- read.csv("C:/Users/zrbxv2/OneDrive - University of Missouri/r_projs/Harm-Reduction-Scales/references/docs/items.csv")
+
+# Build Scales and Check Alphas ----
+scale1 <- df %>% 
+  select(q1, q6, q7, q16, q18, q19, q21, q39, q13)
+scale2 <- df %>% 
+  select(q42, q36, q33, q35, q34, q38, q41) 
+
+```
+
+## Harm Reduction
+
+-   Substance Abuse and Mental Health Services Administration
+    
+    -   Evicenced-based approach to egaging with people who use drugs
+    -   Equipping PWUD with life-saving tools
+    -   Incorporates community-driven public health strategies
+    
+-   Harm Reduction Coalition
+
+    -   Practical stratigies & ideas
+    -   Reduce negative consequences associated with drug use
+    -   Social justice movement
+
+
+## Why Measure Harm Reduction Orientation?
+
+## Existing Measures Have Limitations
+
+-   Single ordinal items (Wild et al., 2021)
+-   Focused on knowledge of harm reduction organizations (Baker et al., 2020)
+-   Single substance focus (Goddard, et al. 2023)
+-   Narrow definition of harm reduction (Bonar & Rosenberg, 2010)
+-   Single population (Sulzer et al., 2021)
+-   Little validity evidence (Hofschulte, 2012)
+-   Survey methods (MacCoun, 2013)
+-   No one uses them!
+
+## The Process
+
+-   Develop Items
+
+    -   Do participants understand items? (3 Rounds)
+
+-   Refine items
+
+    -   Repeat
+
+-   Collect data (EFA)
+
+    -   Analyze
+
+-   Collect more data (CFA & EFA)
+
+    -   Analyze
+
+-   Collect more data (CFA)
+
+    -   Analyze
+
+## Participants
+
+![](C:/Users/zrbxv2/OneDrive%20-%20University%20of%20Missouri/r_projs/Harm-Reduction-Scales/figs/demos.png)
+
+## Closely Related Items
+
+-   Access to Naloxone
+
+    -   People who use drugs should....
+
+    -   The general public should....
+
+    -   Police officers should....
+
+-   People who use drugs should have access to...
+
+    -   People who use drugs should have access to safe injection supplies.
+
+    -   People who use drugs should have access to safe inhalation supplies.
+
+## Closely Related Items
+
+-   Medications for Opioid Use Disorder
+
+    -   Medications used to treat addiction are an appropriate treatment option for people who use drugs.
+
+    -   People who use drugs should be able to use medications used to treat addiction for any length of time.
+
+-   Involvement in Policy and Programs by Recovery Status
+
+    -   People who use drugs should be involved....
+
+    -   People in recovery from drug use should be involved....
+
+## Harm Reduction Strategies
+
+![](C:/Users/zrbxv2/OneDrive%20-%20University%20of%20Missouri/r_projs/Harm-Reduction-Scales/figs/scale1.png)
+
+## Harm Reduction Principles
+
+![](C:/Users/zrbxv2/OneDrive%20-%20University%20of%20Missouri/r_projs/Harm-Reduction-Scales/figs/scale2.png)
+
+## Psychometric Info
+
+```{r}
+splithalf1 <- splitHalf(scale1) ; splithalf2 <- splitHalf(scale2)
+alpha1 <- psych::alpha(scale1, check.keys = TRUE) ; alpha2 <- psych::alpha(scale2, check.keys = TRUE)
+glb1 <- glb.algebraic(cor(scale1, use = "pairwise.complete.obs")) ; glb2 <- glb.algebraic(cor(scale2, use = "pairwise.complete.obs"))
+
+data.frame(Scale = c("Strategies", "Strategies", "Strategies", "Principles", "Principles", "Principles"),
+           `Reliability Statistic` = c("Average Split Half", "Alpha", "Greatest Lower Bound",  
+                           "Average Split Half", "Alpha", "Greatest Lower Bound"),
+           Statistic = c(round(splithalf1$meanr,2),
+                         round(alpha1$total$raw_alpha, 2), 
+                         round(glb1$glb, 2),
+                         round(splithalf2$meanr,2),
+                         round(alpha2$total$raw_alpha, 2), 
+                         round(glb2$glb, 2))) %>% 
+  gt::gt(groupname_col = "Scale") %>% 
+  gt::tab_header(title = "Reliability Statistics For Both Scales")
+
+
+```
+
+## Scale Scores
+
+![](C:/Users/zrbxv2/OneDrive%20-%20University%20of%20Missouri/r_projs/Harm-Reduction-Scales/figs/scores.png)
+
+## Next Steps
+
+-   Validity & Reliability Evidence
+
+    -   Relationships with stigma, closeness with people who use drugs, experience with substance use diagnoses
+
+    -   Test-retest reliability
+    
+    -   Amenability to intervention
+    
+    -   Measurement invariance
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

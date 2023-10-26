@@ -1,5 +1,5 @@
 #####################################
-#     Download Study 2 Responses    #
+#     Download Study 3 Responses    #
 #####################################
 
 # Packages
@@ -11,18 +11,18 @@ surveys <- all_surveys()
 
 # Create Codebook ----
 ## Download Items
-item <- survey_questions(surveys$id[surveys$name == "Harm Reduction Scales - Study 2 - Confirmation"]) 
+item <- survey_questions(surveys$id[surveys$name == "Harm Reduction Scales - Study 3 - Confirmation pt.2"]) 
 
 item <- item %>% 
   filter(qname != "consent") %>% 
   select(scale = NULL, var_label = qname, item = question,
          values = NULL, missing_values = NULL)
 
-write.csv(item, "references/codebooks/20231022_hr-scale-codebook.csv")
+write.csv(item, "references/codebooks/20231025_hr-scale-codebook.csv")
 
 # Download Responses & Clean ----
 resp <- fetch_survey(surveyID = 
-                            surveys$id[surveys$name == "Harm Reduction Scales - Study 2 - Confirmation"],
+                       surveys$id[surveys$name == "Harm Reduction Scales - Study 3 - Confirmation pt.2"],
                     force_request = TRUE,
                     include_display_order = FALSE,
                     include_embedded = c("PROLIFIC_PID", "Q_RecaptchaScore"),
@@ -35,6 +35,6 @@ df <- resp %>%
 
 
 # Write File
-write.csv(df, "data/raw/20231020_hr-scale-confirmatory-data.csv")
+write.csv(df, "data/raw/20231025_hr-scale-confirmatory-data2.csv")
 
 
