@@ -26,7 +26,7 @@ fit <- cfa(
   model,
   data = df,
   ordered = TRUE,
-  estimator = "DWLS",
+  estimator = "WLS",
   std.lv = TRUE
 )      
 

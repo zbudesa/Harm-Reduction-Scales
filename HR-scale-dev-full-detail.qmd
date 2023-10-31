@@ -11,15 +11,19 @@ execute:
   warning: false
   message: false
 ---
+
 # Introduction
-This file documents the ongoing process of analysis and visualization of the Harm Reducation Development and Validation Studies. 
+
+This file documents the ongoing process of analysis and visualization of the Harm Reduction Development and Validation Studies.
 
 ## Item Generation
-Item generation was undertaken in several stages. The first step in item generation consisted of items generated in two scales (harm reduction principles and harm reduction strategies) which were drafted by the authors and piloted with harm reduction workers in local training and harm reduction supply distribution evaluation. Following the initial pilot project, we revised and added items to address gaps that had been noted. The items were generated with regard to both the SAMHSA Harm Reduction Framework and the National Harm Reduction Coalation's Harm Reduction Principles(\href{https://harmreduction.org/about-us/principles-of-harm-reduction/}{link}). Once the initial item pool was generated, we consulted with Dr. David Frank, a harm reduction expert and researcher. Based on his consultation, items were further modified to be accessible to a general population. 
+
+Item generation was undertaken in several stages. The first step in item generation consisted of items generated in two scales (harm reduction principles and harm reduction strategies) which were drafted by the authors and piloted with harm reduction workers in local training and harm reduction supply distribution evaluation. Following the initial pilot project, we revised and added items to address gaps that had been noted. The items were generated with regard to both the SAMHSA Harm Reduction Framework and the National Harm Reduction Coalition's Harm Reduction Principles(<https://harmreduction.org/about-us/principles-of-harm-reduction/>). Once the initial item pool was generated, we consulted with Dr. David Frank, a harm reduction expert and researcher. Based on his consultation, items were further modified to be accessible to a general population.
 
 We used Wolf et al's (2023) Response Process Evaluation (RPE) method to ensure that a non-expert, non-harm reduction audience would understand the item content. Over X rounds of data collection, we used Prolific to collect qualitative responses to each item. As a group, we evaluated each set of responses to determine whether respondents understood or did not understand the intended meaning of each item. Based on respondent answers and suggestions, we identified items which items were generally understood, and which items should be modified or removed. The final item pool contained 45 items related to harm reduction strategies and principles. We phrased items as simply and directly as possible, occasionally splitting complex topics (experiences of discrimination, other topic) across multiple items when necessary. For study 1, items were answered on a 6-point ordinal scale from 1 (Strongly Disagree) to 6 (Strongly Agree). Following inspection of item responses, studies 2 and 3 used 5-point ordinal scales from 1 (Strongly Disagree) to 5 (Strongly Agree). Participants answered items in a random order, and completed a brief demographic survey.
 
 ## Items
+
 ```{r}
 library(gt)
 library(tidyverse)
@@ -41,11 +45,12 @@ items %>%
   )
 ```
 
-
 # Study 1
-Study 1 was preregistered, which can be accessed at \href{https://osf.io/yt7sm}{https://osf.io/yt7sm}. In this study, we conducted exploratory factor analysis using an oblimin rotation based on a polychoric correlation matrix using maximum likelihood estimation for factor extraction. We used the 40-30-20 rule to determine factor loading cut off, which means that retained items should load on their primary factor above 0.4, load onto alternative factors below 0.3, and show a difference of 0.2 between primary and alternative factor loadings. Finally, scale reliability will be assessed using Cronbachs' Alpha, the Greatest Lower Bound, and average split half reliability.
+
+Study 1 was preregistered, which can be accessed at <https://osf.io/yt7sm>. In this study, we conducted exploratory factor analysis using an oblimin rotation based on a polychoric correlation matrix using maximum likelihood estimation for factor extraction. We used the 40-30-20 rule to determine factor loading cut off, which means that retained items should load on their primary factor above 0.4, load onto alternative factors below 0.3, and show a difference of 0.2 between primary and alternative factor loadings. Finally, scale reliability will be assessed using Cronbachs' Alpha, the Greatest Lower Bound, and average split half reliability.
 
 ## Participants
+
 ```{r}
 # Libraries
 library(psych)
@@ -65,10 +70,10 @@ hr <- df %>% # N = 301
   select(starts_with("q"), -Q_RecaptchaScore)
 ```
 
-
 Through Prolific, we recruited 301 participants for Study 1. These participants were 50% men (n = 149), 70% White (n = 210), 41% had completed a bachelor's degree (n = 122), 88% reported no history of a substance use disorder (SUD) diagnosis, and had an average age of 36. Table 2 provides additional detail about this sample.
 
 ```{r}
+#| column: margin
 library(gtsummary)
 library(gt)
 
@@ -88,6 +93,7 @@ demos %>%
 ```
 
 ## Initial Data Inspection
+
 ```{r}
 # Create Polychoric Correlation Matrix
 hrMatrix <- POLYCHORIC_R(hr, verbose = FALSE)
@@ -96,9 +102,11 @@ bart <- cortest.bartlett(hrMatrix, n = 301)
 
 kmo <- KMO(hrMatrix)
 ```
-Using a polychoric correlation matrix, we analyzed Bartlett's Sphericity and the Kaiser-Meyer-Olkin test to ensure that the data were appropriate for factor analysis. Our data appeared adequate for factor analysis, with Kaiser Meyer-Olkin = `r kmo$MSA`, and Barlett's sphericity $\chi^2$(`r bart$df`) = `r bart$chisq`, p = `r bart$p.value`. Inspection of the correlation matrix showed many inter-item correlations > .40, indicating that a factor solution should be possible. 
+
+Using a polychoric correlation matrix, we analyzed Bartlett's Sphericity and the Kaiser-Meyer-Olkin test to ensure that the data were appropriate for factor analysis. Our data appeared adequate for factor analysis, with Kaiser Meyer-Olkin = `r kmo$MSA`, and Barlett's sphericity $\chi^2$(`r bart$df`) = `r bart$chisq`, p = `r bart$p.value`. Inspection of the correlation matrix showed many inter-item correlations \> .40, indicating that a factor solution should be possible.
 
 ### Local Dependence Between Items
+
 ```{r}
 # Saved because LOCALDEP takes forever to run
 # ld <- LOCALDEP(hr)
@@ -108,7 +116,7 @@ ld <- readRDS("study1-local-dependence.rds")
 
 ```
 
-Initial inspection did reveal excessively high inter-item correlations that caused concern. First, there were 14 inter-item correlations which were > .70, and 2 partial correlations > .60. Using the EFA.dimensions package, inspection of possible local dependence was done via Q3, X2, and and G2 statistics. Possible locally dependent items were inspected pair-by-pair. Those that were highly similar were removed, while those that appeared statistically locally dependent but different content wise were retained. Table 3 provides additional detail about possible local dependence. Based on both quantitative and qualitative inspection of items, the following items were removed due to their similarity with others: Items 4 and 5 (local dependence with item 3), item 8 (local dependence with item 7), item 45 (local dependence with item 12), item 22 (local dependence with item 27), items 24 and 25 (local dependence with item 23), item 32 (local dependence with item 29), item 31 (local dependence with item 30), and item 40 (local dependence with item 39). While there are other possible removals, these items represented the most overlap in both statistical and content terms. 
+Initial inspection did reveal excessively high inter-item correlations that caused concern. First, there were 14 inter-item correlations which were \> .70, and 2 partial correlations \> .60. Using the EFA.dimensions package, inspection of possible local dependence was done via Q3, X2, and and G2 statistics. Possible locally dependent items were inspected pair-by-pair. Those that were highly similar were removed, while those that appeared statistically locally dependent but different content wise were retained. Table 3 provides additional detail about possible local dependence. Based on both quantitative and qualitative inspection of items, the following items were removed due to their similarity with others: Items 4 and 5 (local dependence with item 3), item 8 (local dependence with item 7), item 45 (local dependence with item 12), item 22 (local dependence with item 27), items 24 and 25 (local dependence with item 23), item 32 (local dependence with item 29), item 31 (local dependence with item 30), and item 40 (local dependence with item 39). While there are other possible removals, these items represented the most overlap in both statistical and content terms.
 
 ```{r}
 ld$localdep_stats %>% 
@@ -136,10 +144,13 @@ bart <- cortest.bartlett(hrMatrix, n = 301)
 
 kmo <- KMO(hrMatrix)
 ```
+
 After removing items which showed excessive local dependence, bartlett's sphericity and Kaiser-Meyer-Olkin were checked again, with Kaiser Meyer-Olkin = `r kmo$MSA`, and Barlett's sphericity $\chi^2$(`r bart$df`) = `r bart$chisq`, p = `r bart$p.value`.
 
 ## Exploratory Factor Analysis
+
 ### Parallel Analysis
+
 ```{r}
 fa.para <- fa.parallel(hrMatrix, n.obs = 301,
                        fm = "ml", 
@@ -148,6 +159,7 @@ fa.para <- fa.parallel(hrMatrix, n.obs = 301,
 ```
 
 ### Model 1
+
 ```{r}
 # Initial Factor Analysis
 efa <- EFA.dimensions::EFA(hrMatrix,
@@ -190,7 +202,8 @@ initial <- efa$pattern %>%
 
 ```
 
-An initial factor analysis revealed that a four factor solution provided poor fit for the data, with factor 1 explaining 41% of the total variance (eigenvalue = 14.57), factor 2 explaining 8% of the total variance (eigenvalue = 2.8), factor 3 explaining 3% of the total variance (eigenvalue = 1.05), and factor 4 explaining 2.5% of the total variance (eigenvalue = .90). This model had the following model fit indices: $\chi^2$(`r efa$dfMODEL`) = `r round(efa$chisqMODEL, 2)`, p = `r efa$pvalue`; CLI = `r round(efa$fit_coefs$CFI, 3)`; TLI = `r round(efa$fit_coefs$TLI, 3)`; RMSEA = `r round(efa$fit_coefs$RMSEA, 3)`. In addition to poor fit, there were numerous cross-loadings which exceeded the limit of difference of .2. Table 4 provides full factor loadings. 
+An initial factor analysis revealed that a four factor solution provided poor fit for the data, with factor 1 explaining 41% of the total variance (eigenvalue = 14.57), factor 2 explaining 8% of the total variance (eigenvalue = 2.8), factor 3 explaining 3% of the total variance (eigenvalue = 1.05), and factor 4 explaining 2.5% of the total variance (eigenvalue = .90). This model had the following model fit indices: $\chi^2$(`r efa$dfMODEL`) = `r round(efa$chisqMODEL, 2)`, p = `r efa$pvalue`; CLI = `r round(efa$fit_coefs$CFI, 3)`; TLI = `r round(efa$fit_coefs$TLI, 3)`; RMSEA = `r round(efa$fit_coefs$RMSEA, 3)`. In addition to poor fit, there were numerous cross-loadings which exceeded the limit of difference of .2. Table 4 provides full factor loadings.
+
 ```{r}
 
 # New Matrix
@@ -322,9 +335,334 @@ left_join(
 ```
 
 ### Model 2
+
 Based on initial factor loadings, items were iteratively removed and the structure was reduced from 4 factors to 3. In total, 13 items were removed (see Table 4), which resulted in a 22 item, 3 factor structure with adequate factor loadings and cross-loadings. This model had the following model fit indices: $\chi^2$(`r efa.final$dfMODEL`) = `r round(efa.final$chisqMODEL, 2)`, p = `r round(efa.final$pvalue, 3)`; CLI = `r round(efa.final$fit_coefs$CFI, 3)`; TLI = `r round(efa.final$fit_coefs$TLI, 3)`; RMSEA = `r round(efa.final$fit_coefs$RMSEA, 3)`. In this solution, factor 1 explained 47% of the total variance (eigenvalue = 10.45), factor 2 explained 12% of the total variance (eigenvalue = 2.74), and factor 3 explained 5% of the total variance (eigenvalue = 1.09). This model shows acceptable fit, and was chosen as the final solution for this study.
 
 ## Scale Inspection
+
+
+::: columns
+
+::: {.column width="35%"}
+The first factor shows good reliability, with alpha, split half, and greatest lower bound of reliability greater than .93. The second factor has acceptable split half and internal reliability, but it's greatest lower bound is very low. Finally, the third factor has split half reliability, internal consistency, and greatest lower bound between .7 and .8, which indicates acceptable, if low reliability. Based on these statistics, the first factor provides the best measurement of the construct of interest, while factors 2 and 3 present some concern. 
+:::
+
+::: {.column width="10%"}
+<!-- Empty -->
+:::
+
+::: {.column width="55%"}
+```{r}
+scale1 <- hr %>% 
+  select(q1, q3, q6, q7, q13, q16, q18, q19, q21,q39)
+scale2 <- hr %>% 
+  select(q33, q36, q38, q41, q42)
+scale3 <- hr %>% 
+  select(q2, q9, q10, q23, q27, q29, q30)
+
+
+splithalf1 <- splitHalf(scale1) ; splithalf2 <- splitHalf(scale2) ; splithalf3 <- splitHalf(scale3) 
+alpha1 <- psych::alpha(scale1, check.keys = TRUE) ; alpha2 <- psych::alpha(scale2, check.keys = TRUE) ; alpha3 <- psych::alpha(scale3, check.keys = TRUE) 
+glb1 <- glb.algebraic(cor(scale1, use = "pairwise.complete.obs")) ; glb2 <- glb.algebraic(cor(scale2, use = "pairwise.complete.obs")) ; glb3 <- glb.algebraic(cor(scale3, use = "pairwise.complete.obs")) 
+
+data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2", "Factor 2", "Factor 3", "Factor 3", "Factor 3"),
+           `Reliability Statistic` = c("Average Split Half", "Alpha", "Greatest Lower Bound",
+                                       "Average Split Half", "Alpha", "Greatest Lower Bound", 
+                                       "Average Split Half", "Alpha", "Greatest Lower Bound"),
+           Statistic = c(round(splithalf1$meanr,2),
+                         round(alpha1$total$raw_alpha, 2), 
+                         round(glb1$glb, 2),
+                         round(splithalf2$meanr,2),
+                         round(alpha2$total$raw_alpha, 2), 
+                         round(glb2$glb, 2),
+                         round(splithalf3$meanr,2),
+                         round(alpha3$total$raw_alpha, 2), 
+                         round(glb3$glb, 2))) %>% 
+  gt::gt(groupname_col = "Factor") %>% 
+  gt::tab_header(title = "Table 5: Reliability Statistics For Both Scales")
+
+```
+:::
+:::
+
+Once reliability for the final factor solution had been inspected, item responses were investigated. For factor 1, distribution of responses across response options showed that the lowest response options (1, "Strongly Disagree" & 2, "Disagree") were underused for many items, except those which loaded negatively (i.e., reverse coded), like the final item in factor 1, in which the highest response option (6, "Strongly Agree") was used only 7% of the time. 
+```{r}
+#| fig-width: 12
+#| fig-height: 12
+#| column: screen
+#| out-width: 100%
+#| fig-cap: "Figure 1: Study 1, Factor 1 Response Distribution"
+
+item <- read.csv("references/docs/items.csv")
+
+
+items.1 <-  
+  data.frame(alpha1$response.freq) %>% 
+  mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>% 
+  pivot_longer(c(X1:X6)) %>% 
+  mutate(Response = 
+           factor(case_when(
+             name == "X1" ~ "Strongly Disagree",
+             name == "X2" ~ "Disagree",
+             name == "X3" ~ "Somewhat Disagree",
+             name == "X4" ~ "Somewhat Agree",
+             name == "X5" ~ "Agree",
+             name == "X6" ~ "Strongly Agree"
+           ),
+           levels = c("Strongly Agree","Agree","Somewhat Agree",
+                      "Somewhat Disagree","Disagree",
+                      "Strongly Disagree"))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+    geom_text(aes(label = paste0(round(value*100,0),"%")), 
+              position = position_stack(vjust = .5),
+              size = 8, color = "white") +
+    ggokabeito::scale_fill_okabe_ito(
+      breaks = c("Strongly Disagree","Disagree","Somewhat Disagree",
+                 "Somewhat Agree","Agree","Strongly Agree"
+      )) +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 1") +
+    theme(
+      axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 15, vjust = -.2),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 30),
+      legend.text = element_text(size = 10)
+    )
+
+## Scale 2
+items.2 <- data.frame(alpha2$response.freq) %>% 
+    mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>% 
+  pivot_longer(c(X1:X6)) %>% 
+  mutate(Response = 
+           factor(case_when(
+             name == "X1" ~ "Strongly Disagree",
+             name == "X2" ~ "Disagree",
+             name == "X3" ~ "Somewhat Disagree",
+             name == "X4" ~ "Somewhat Agree",
+             name == "X5" ~ "Agree",
+             name == "X6" ~ "Strongly Agree"
+           ),
+           levels = c("Strongly Agree","Agree","Somewhat Agree",
+                      "Somewhat Disagree","Disagree",
+                      "Strongly Disagree"))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+    geom_text(aes(label = paste0(round(value*100,0),"%")), 
+              position = position_stack(vjust = .5),
+              size = 8, color = "white") +
+    ggokabeito::scale_fill_okabe_ito(
+      breaks = c("Strongly Disagree","Disagree","Somewhat Disagree",
+                 "Somewhat Agree","Agree","Strongly Agree"
+      )) +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 2") +
+    theme(
+     axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 10),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 20)
+    )
+
+
+
+## Scale 3
+items.3 <- data.frame(alpha3$response.freq) %>% 
+mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>% 
+  pivot_longer(c(X1:X6)) %>% 
+  mutate(Response = 
+           factor(case_when(
+             name == "X1" ~ "Strongly Disagree",
+             name == "X2" ~ "Disagree",
+             name == "X3" ~ "Somewhat Disagree",
+             name == "X4" ~ "Somewhat Agree",
+             name == "X5" ~ "Agree",
+             name == "X6" ~ "Strongly Agree"
+           ),
+           levels = c("Strongly Agree","Agree","Somewhat Agree",
+                      "Somewhat Disagree","Disagree",
+                      "Strongly Disagree"
+                 ))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+    geom_text(aes(label = paste0(round(value*100,0),"%")), 
+              position = position_stack(vjust = .52),
+              size = 3, color = "white") +
+    ggokabeito::scale_fill_okabe_ito(
+      breaks = c("Strongly Disagree","Disagree","Somewhat Disagree",
+                 "Somewhat Agree","Agree","Strongly Agree"
+      )) +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 3") +
+    theme(
+      axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 10),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 20)
+    )
+
+items.1
+```
+The same was true for both Factors 2 and 3, which showed that extreme response options were underutilized across most items (See Figures 2 & 3).
+
+```{r}
+#| column: screen
+#| out-width: 80%
+#| layout-ncol: 2
+#| fig-cap: 
+#|  - "Figure 2: Study 1, Factor 2 Response Distribution"
+#|  - "Figure 3: Study 1, Factor 3 Response Distribution"
+items.2
+
+items.3
+```
+
+As a result of this response option utilization, the decision was made to reduce from 6 options to 5 for future data collection efforts. The finaly factor solution was deemed acceptable for confirmatory studies.
+
+
+# Study 2
+Study 2 was preregistered, which can be accessed at <https://osf.io/t5e2a>. In this study, we conducted confirmatory factor analysis using new data based on the factor structure in Study 1. The confirmatory factor analysis was fit using weighted least squares estimation treating categories as ordinal rather than numeric, which was a deviation from the preregistration. We will use two sets of criteria to assess model fit: First, we will use Hu & Bentler's (2009) cut offs of .95 for TLI and CFI, and .06 for RMSEA.
+
+## Participants
+Through Prolific, we recruited 393 participants for Study 2. These participants were 52% men (n = 205), 70% White (n = 277), and most had completed a bachelor's degree (41%, n = 161), and 88% reported no history of SUD diagnosis. Table 6 provides detail about the participants. 
+```{r}
+df <- read.csv("data/clean/20231020_hr-scale-confirmatory-data.csv")
+
+demos <- df %>% 
+  select(age, gid1, race, ed, sud_hx)
+
+demos %>% 
+  tbl_summary(
+    missing = "no",
+    statistic = list(age = "{mean} ({sd})"),
+    digits = list(age ~ c(2,2)),
+    sort = list(everything() ~ "frequency"),
+    label = list(
+      age ~ "Age", gid1 ~ "Gender Identity",
+      race ~ "Race/Ethnicity", ed ~ "Highest Level of Education",
+      sud_hx ~ "History of Substance Use Disorder Diagnosis")
+              ) %>% 
+  as_gt() %>% 
+  tab_header(title = "Table 6: Study 2 Participants")
+```
+
+
+## Confirmator Factory Analysis
+The model from Study 1 was fit using confirmatory factor analysis using a weighted least squares estimator and ordinal indicators. This model showed moderate fit based on the selected fit statistics: $\chi^2$(206) = 1033.11, p > 0.001; CFI = .97; TLI = .97; SRMR = .27; RMSEA = .10. Based on CFI and TLI, the model had good fit. Based on SRMR and RMSEA, the model shows poor fit. Figure 4 provides factor loadings and covariances for the model.
+```{r}
+#| column: margin
+
+
+
+
+library(lavaan)
+library(semPlot)
+library(semptools)
+
+hr <- df %>% # N = 301
+  select(starts_with("q"), -Q_RecaptchaScore)
+
+# Initial Model Fit
+model <-  'F1 =~ q1 + q3 + q6 + q7 + q13 + q16 + q18 + q19 + q21 +q39
+           F2 =~ q33 + q36 + q38 + q41 + q42
+           F3 =~ q2 + q9 + q10 + q23 + q27 + q29 + q30
+
+           F1 ~~ F2
+           F1 ~~ F3' 
+
+fit <- cfa(
+  model,
+  data = df,
+  ordered = TRUE,
+  estimator = "WLS",
+  std.lv = TRUE
+)      
+
+
+fitmeasures(fit,
+            c("cfi", "tli", "srmr", "rmsea", "chisq", "df", "pvalue")) %>% 
+  as_tibble(rownames = "Item") %>% 
+  gt() %>% 
+  tab_header(
+    title = "Table 7: CFA Fit Statistics"
+  ) %>% 
+  fmt_number(columns = 2, 
+             decimals = 2)
+
+
+
+```
+
+```{r}
+#| column: page
+#| fig-cap: "Figure 4: Study 2 CFA"
+
+plot(set_cfa_layout(
+  semPaths(fit, whatLabels="est",
+        sizeMan = 3,
+        node.width = 1,
+        thresholds = FALSE,
+        edge.label.cex = .75,
+        style = "ram",
+        mar = c(5, 1, 5, 1),
+        intercepts = FALSE),
+  fcov_curve = 1.75,
+  loading_position = .9))
+
+
+```
+
+## Scale Reliability
+Reliability is an issue with this model, as the first factor shows continued adequate reliability, but factors 2 and 3 continue to have poorer reliability. Additionally, reliability would be improved by dropping items, which would shorten factor 2, and make it only 3 items, if not fewer.
 ```{r}
 scale1 <- hr %>% 
   select(q1, q3, q6, q7, q13, q16, q18, q19, q21,q39)
@@ -356,212 +694,218 @@ data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2"
 
 ```
 
-
-```{r}
-#| fig-width: 12
-#| fig-height: 12
-#| column: page
-
-item <- read.csv("references/docs/items.csv")
-
-
-#items.1 <-  
-  data.frame(alpha1$response.freq) %>% 
-  mutate(item = rownames(.)) %>% 
-  left_join(item %>% 
-              select(qname, question), 
-            by = c("item" = "qname")) %>% 
-  pivot_longer(c(X1:X6)) %>% 
-  mutate(Response = 
-           case_when(
-             name == "X1" ~ "Strongly Disagree",
-             name == "X2" ~ "Disagree",
-             name == "X3" ~ "Somewhat Disagree",
-             name == "X4" ~ "Somewhat Agree",
-             name == "X5" ~ "Agree",
-             name == "X6" ~ "Strongly Agree"
-           )) %>% 
-  ggplot() +
-  aes(x = question, y = value, fill = Response) +
-  geom_bar(stat = "identity", position = "stack") +
-    geom_text(aes(label = paste0(round(value*100,0),"%")), 
-              position = position_stack(vjust = .5),
-              size = 8, color = "white") +
-    ggokabeito::scale_fill_okabe_ito(
-      breaks = c("Disagree","Somewhat Disagree","Somewhat Agree",
-                 "Agree","Strongly Agree"
-      )) +
-    coord_flip() +
-    ggforce::facet_col(facets = vars(question), 
-                       scales = "free_y", 
-                       space = "free",
-                       labeller = label_wrap_gen(width = 100)
-    ) +
-    labs(title = "Factor 1") +
-    theme(
-      axis.title = element_blank(),
-      strip.background = element_blank(),
-      legend.position = "top",
-      axis.ticks = element_blank(),
-      axis.text = element_blank(),
-      panel.background = element_blank(),
-      strip.text = element_text(size = 15, vjust = -.2),
-      panel.spacing = unit(-1, "lines"),
-      legend.title = element_blank(),
-      strip.clip = "off",
-      plot.title = element_text(hjust = 0.5, size = 30),
-      legend.text = element_text(size = 10)
-    )
-```
-  
-  
-```{r}
-#| fig-width: 10
-#| fig-height: 10
-#| column: screen
-
-## Scale 2
-(items.2 <- data.frame(alpha2$response.freq) %>% 
-    mutate(item = rownames(.)) %>% 
-  left_join(item %>% 
-              select(qname, question), 
-            by = c("item" = "qname")) %>% 
-  pivot_longer(c(X1:X6)) %>% 
-  mutate(Response = 
-           case_when(
-             name == "X1" ~ "Strongly Disagree",
-             name == "X2" ~ "Disagree",
-             name == "X3" ~ "Somewhat Disagree",
-             name == "X4" ~ "Somewhat Agree",
-             name == "X5" ~ "Agree",
-             name == "X6" ~ "Strongly Agree"
-           )) %>% 
-  ggplot() +
-  aes(x = question, y = value, fill = Response) +
-  geom_bar(stat = "identity", position = "stack") +
-    geom_text(aes(label = paste0(round(value*100,0),"%")), 
-              position = position_stack(vjust = .5),
-              size = 8, color = "white") +
-    ggokabeito::scale_fill_okabe_ito(
-      breaks = c("Disagree","Somewhat Disagree","Somewhat Agree",
-                 "Agree","Strongly Agree"
-      )) +
-    coord_flip() +
-    ggforce::facet_col(facets = vars(question), 
-                       scales = "free_y", 
-                       space = "free",
-                       labeller = label_wrap_gen(width = 150)
-    ) +
-    labs(title = "Factor 2") +
-    theme(
-      axis.title = element_blank(),
-      strip.background = element_blank(),
-      legend.position = "top",
-      axis.ticks = element_blank(),
-      axis.text = element_blank(),
-      panel.background = element_blank(),
-      strip.text = element_text(size = 20, vjust = -.75),
-      panel.spacing = unit(-1, "lines"),
-      legend.title = element_blank(),
-      strip.clip = "off",
-      plot.title = element_text(hjust = 0.5, size = 30)
-    ))
-```
-
-
-```{r}
-#| fig-width: 10
-#| fig-height: 10
-#| column: screen
-
-## Scale 3
-(items.3 <- data.frame(alpha3$response.freq) %>% 
-mutate(item = rownames(.)) %>% 
-  left_join(item %>% 
-              select(qname, question), 
-            by = c("item" = "qname")) %>% 
-  pivot_longer(c(X1:X6)) %>% 
-  mutate(Response = 
-           case_when(
-             name == "X1" ~ "Strongly Disagree",
-             name == "X2" ~ "Disagree",
-             name == "X3" ~ "Somewhat Disagree",
-             name == "X4" ~ "Somewhat Agree",
-             name == "X5" ~ "Agree",
-             name == "X6" ~ "Strongly Agree"
-           )) %>% 
-  ggplot() +
-  aes(x = question, y = value, fill = Response) +
-  geom_bar(stat = "identity", position = "stack") +
-    geom_text(aes(label = paste0(round(value*100,0),"%")), 
-              position = position_stack(vjust = .5),
-              size = 8, color = "white") +
-    ggokabeito::scale_fill_okabe_ito(
-      breaks = c("Disagree","Somewhat Disagree","Somewhat Agree",
-                 "Agree","Strongly Agree"
-      )) +
-    coord_flip() +
-    ggforce::facet_col(facets = vars(question), 
-                       scales = "free_y", 
-                       space = "free",
-                       labeller = label_wrap_gen(width = 150)
-    ) +
-    labs(title = "Factor 3") +
-    theme(
-      axis.title = element_blank(),
-      strip.background = element_blank(),
-      legend.position = "top",
-      axis.ticks = element_blank(),
-      axis.text = element_blank(),
-      panel.background = element_blank(),
-      strip.text = element_text(size = 20, vjust = -.75),
-      panel.spacing = unit(-1, "lines"),
-      legend.title = element_blank(),
-      strip.clip = "off",
-      plot.title = element_text(hjust = 0.5, size = 30)
-    )
-)
-
-```
-
-
-
-
-# Study 2
-
-## Participants
-
-
-
-
-## Confirmator Factory Analysis
-
-
-
-## Scale Inspection
-
-
-
 ## Exploratory Factor Analysis
+```{r}
 
+hr <- df %>% # N = 301
+  select(starts_with("q"), -Q_RecaptchaScore)
+
+hr.ld <-
+  hr %>% 
+  select(-c(q4:q5, 
+            q31,
+            q40,
+            q25,
+            q45))
+
+hrMatrix <- POLYCHORIC_R(hr.ld,
+                         verbose = FALSE)
+
+
+bart <- cortest.bartlett(hrMatrix, n = 301)
+
+kmo <- KMO(hrMatrix)
+```
+Based on poor model fit, this same data set was used to conduct a second exploratory factor analysis using a maximum likelihood estimator and an oblimin rotation. This exploratory study was not preregistered. The items which showed initial local dependence were reinspected. In this study, items 8, 24, 22, and 32 showed acceptable levels of local dependence, and were retained. After removing items which showed excessive local dependence, bartlett's sphericity and Kaiser-Meyer-Olkin were checked again, with Kaiser Meyer-Olkin = `r kmo$MSA`, and Barlett's sphericity $\chi^2$(`r bart$df`) = `r bart$chisq`, p = `r bart$p.value`.
+
+```{r}
+# Initial Factor Analysis
+efa <- EFA.dimensions::EFA(hrMatrix,
+                    extraction = "ml", 
+                    Nfactors = 4, 
+                    Ncases = 301,
+                    rotation = "oblimin",
+                    verbose = FALSE)
+
+
+
+initial <- efa$pattern %>% 
+  as_tibble(rownames = "Item") %>% 
+  gt() %>% 
+  tab_style(
+    locations = list(
+      # Factor 1
+      cells_body(
+      columns = `Factor 1`,
+      rows = abs(`Factor 1`) < .30 ),
+      # Factor 2
+      cells_body(
+        columns = `Factor 2`,
+        rows = abs(`Factor 2`) < .30 
+      ),
+      # Factor 3
+       cells_body(
+        columns = `Factor 3`,
+        rows = abs(`Factor 3`) < .30 
+      ),
+      # Factor 4
+       cells_body(
+        columns = `Factor 4`,
+        rows = abs(`Factor 4`) < .30 
+      )),
+    style = list(cell_text(color = 'gray'))) %>% 
+  fmt_number(
+    columns = starts_with("Factor"),
+    decimals = 3) 
+
+```
+
+An initial factor analysis revealed that a four factor solution provided poor fit for the data, with factor 1 explaining 41% of the total variance (eigenvalue = 14.57), factor 2 explaining 8% of the total variance (eigenvalue = 2.8), factor 3 explaining 3% of the total variance (eigenvalue = 1.05), and factor 4 explaining 2.5% of the total variance (eigenvalue = .90). This model had the following model fit indices: $\chi^2$(`r efa$dfMODEL`) = `r round(efa$chisqMODEL, 2)`, p = `r efa$pvalue`; CLI = `r round(efa$fit_coefs$CFI, 3)`; TLI = `r round(efa$fit_coefs$TLI, 3)`; RMSEA = `r round(efa$fit_coefs$RMSEA, 3)`. In addition to poor fit, there were numerous cross-loadings which exceeded the limit of difference of .2. Table 4 provides full factor loadings.
+
+```{r}
+# New Matrix
+hrMatrix <- 
+  POLYCHORIC_R(
+    hr.ld %>% 
+      select(-c(q12, q30, q17, q3,
+                q43, q11, q22,
+                q27, q23, q26, q44,
+                q20, 
+                # < .4 loading
+                q41,
+                # Remove 3rd scale
+                q2, q9, q32, q28, q29,
+                # Remove from Scale 1
+                q15, q21, q37)),                         
+    verbose = FALSE)
+
+efa.final <- EFA.dimensions::EFA(hrMatrix,
+                    extraction = "ml", 
+                    Nfactors = 2, 
+                    Ncases = 301,
+                    rotation = "oblimin",
+                    verbose = FALSE)
+
+final <- efa.final$pattern %>% 
+  as_tibble(rownames = "Item") %>% 
+  gt() %>% 
+  tab_style(
+    locations = list(
+      # Factor 1
+      cells_body(
+      columns = `Factor 1`,
+      rows = abs(`Factor 1`) < .30),
+      # Factor 2
+      cells_body(
+        columns = `Factor 2`,
+        rows = abs(`Factor 2`) < .30 
+      )),
+    style = list(cell_text(color = 'gray'))) %>% 
+  fmt_number(
+    columns = starts_with("Factor"),
+    decimals = 3) 
+
+
+left_join(
+    initial$`_data`,
+    final$`_data`,
+    by = c(
+      "Item" = "Item"
+    )) %>% 
+  arrange(
+    factor(Item,
+           levels = 
+             c(
+               # Factor 1
+               "q1", "q3", "q6", "q7", "q13", "q16", "q18", "q19", "q21","q39",
+               # Factor 2
+               "q33", "q36", "q38", "q41", "q42"))) %>% 
+  janitor::clean_names() %>% 
+  gt() %>% 
+  tab_style(
+    locations = list(
+      # Factor 1
+      cells_body(
+      columns = factor_1_x,
+      rows = abs(factor_1_x) < .30),
+      # Factor 2
+      cells_body(
+        columns = factor_2_x,
+        rows = abs(factor_2_x) < .30 
+      ),
+      # Factor 3
+       cells_body(
+        columns = factor_3_x,
+        rows = abs(factor_3_x) < .30 
+      ),
+      # Factor 4
+       cells_body(
+        columns = factor_4,
+        rows = abs(factor_4) < .30 
+      ),
+       # Factor 1 - Final
+      cells_body(
+      columns = factor_1_y,
+      rows = abs(factor_1_y) < .30),
+      # Factor 2 - Final
+      cells_body(
+        columns = factor_2_y,
+        rows = abs(factor_2_y) < .30 
+      )),
+    style = list(cell_text(color = 'gray'))) %>% 
+  fmt_number(
+    columns = starts_with("Factor"),
+    decimals = 3)  %>% 
+  fmt_missing() %>% 
+  tab_header(
+    title = "Table 4: Initial and Final Factor Structure"
+  ) %>% 
+  tab_spanner(
+    label = "Initial 4 Factor Solution",
+    columns = 2:5
+  ) %>% 
+  tab_spanner(
+    label = "Final 3 Factor Solution",
+    columns = 6:8
+  ) %>% 
+  cols_label(
+    factor_1_x  = "Factor 1",
+    factor_2_x = "Factor 2",
+    factor_3_x = "Factor 3",
+    factor_4 = "Factor 4",
+    factor_1_y = "Factor 1",
+    factor_2_y = "Factor 2"
+  )
+```
 
 
 ## Scale Inspection
-
-
 
 # Study 3
 
 ## Participants
-
-
-
+```{r}
+# df <- read.csv("data/clean/20231020_hr-scale-confirmatory-data2.csv")
+# 
+# 
+# demos <- df %>% 
+#   select(age, gid1, race, ed, sud_hx)
+# 
+# demos %>% 
+#   tbl_summary(
+#     missing = "no",
+#     statistic = list(age = "{mean} ({sd})"),
+#     digits = list(age ~ c(2,2)),
+#     sort = list(everything() ~ "frequency"),
+#     label = list(
+#       age ~ "Age", gid1 ~ "Gender Identity",
+#       race ~ "Race/Ethnicity", ed ~ "Highest Level of Education",
+#       sud_hx ~ "History of Substance Use Disorder Diagnosis")
+#               ) %>% 
+#   as_gt() %>% 
+#   tab_header(title = "Table X: Study 3 Participants")
+```
 
 # Confirmatory Factor Analysis
-
-
-
-
-
 
 ## Scale Inspection
