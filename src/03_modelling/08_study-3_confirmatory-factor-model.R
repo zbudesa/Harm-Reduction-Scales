@@ -37,7 +37,7 @@ fitmeasures(fit.reduced,
             output = "matrix")
 
 # Study 2 Model Fit
-model <-  'F1 =~ q21 + q1 + q6 + q7 + q16 + q18 + q19 + q39 + q13
+model <-  'F1 =~ q21 + q1 + q6 + q7 + q16 + q18 + q19 + q13
            F2 =~ q36 + q42 + q33 + q35 + q34 + q38 + q41' 
 
 fit <- cfa(

@@ -79,9 +79,18 @@ View(
 # Building Dataset with Removed Local Dependence Items
 hr.ld <-
   hr %>% 
-  select(-c(q4:q5, q25, q40,
-            q31, q8, q24, q45, 
-            q22, q32))
+  select(-c(q4:q5, 
+            q8,
+            q45, 
+            q24,
+            q25, 
+            q32,
+            q22, 
+            
+            
+            q40,
+            q31,  
+            ))
 
 hrMatrix <- POLYCHORIC_R(hr.ld)
 
@@ -109,7 +118,7 @@ vss(hr.ld, n = length(hr.ld), fm = "mle") # MAP suggests 4, BIC 3, SABIC 5
 
 
 ## Initial Factor Analysis ----
-fa1 <- fa(hrMatrix, n.obs = 301, nfactors = 5, rotate = "none", cor = "poly")
+fa1 <- fa(hrMatrix, n.obs = 301, nfactors = 5, rotate = "none", cor = "poly", fm = "mle")
 psych::print.psych(fa1, sort = "TRUE", cut = .3)
 
 fa1$e.values
@@ -258,11 +267,11 @@ fa13 <- fa(hrMatrix12, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "pol
 psych::print.psych(fa13, sort = "TRUE", cut = .3)
 
 # Build Scales and Check Alphas ----
-scale1 <- hr.ld %>% 
-  select(q1, q3, q6, q7, q13, q14, q16, q18, q19, q21,q39)
-scale2 <- hr.ld %>% 
+scale1 <- hr %>% 
+  select(q1, q3, q6, q7, q13, q16, q18, q19, q21,q39)
+scale2 <- hr %>% 
   select(q33, q36, q38, q41, q42)
-scale3 <- hr.ld %>% 
+scale3 <- hr %>% 
   select(q2, q9, q10, q23, q27, q29, q30)
 
 

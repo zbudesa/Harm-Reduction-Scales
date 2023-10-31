@@ -11,7 +11,7 @@ df <- read.csv("data/clean/20231025_hr-scale-confirmatory-data2.csv")
 
 # Build Scales and Check Alphas ----
 scale1 <- df %>% 
-  select(q1, q6, q7, q16, q18, q19, q21, q39, q13)
+  select(q1, q6, q7, q16, q18, q19, q21, q13) # Drop item 39 due to loading and low alpha
 scale2 <- df %>% 
   select(q42, q36, q33, q35, q34, q38, q41) 
 
@@ -23,15 +23,17 @@ surveys <- all_surveys()
 
 # Create Codebook ----
 ## Download Items
-item <- survey_questions(surveys$id[surveys$name == "Harm Reduction Scales - Study 2 - Confirmation"]) 
+# item <- survey_questions(surveys$id[surveys$name == "Harm Reduction Scales - Study 2 - Confirmation"]) 
+# 
+# item <- item %>% 
+#   mutate(scale = case_when(
+#       qname %in% colnames(scale1) ~ "Scale 1",
+#       qname %in% colnames(scale2) ~ "Scale 2"
+#     ))
+# 
+# write.csv(item, "references/docs/items.csv")
 
-item <- item %>% 
-  mutate(scale = case_when(
-      qname %in% colnames(scale1) ~ "Scale 1",
-      qname %in% colnames(scale2) ~ "Scale 2"
-    ))
-
-write.csv(item, "references/docs/items.csv")
+item <- read.csv("references/docs/items.csv")
 
 # Estimate alphas
 alpha1 <- psych::alpha(scale1, check.keys = TRUE)
@@ -74,7 +76,7 @@ alpha2 <- psych::alpha(scale2, check.keys = TRUE)
     ggforce::facet_col(facets = vars(question), 
                        scales = "free_y", 
                        space = "free",
-                       labeller = label_wrap_gen(width = 150)
+                       #labeller = label_wrap_gen(width = 150)
     ) +
     labs(title = "Harm Reduction Strategies") +
     theme(
@@ -84,11 +86,16 @@ alpha2 <- psych::alpha(scale2, check.keys = TRUE)
       axis.ticks = element_blank(),
       axis.text = element_blank(),
       panel.background = element_blank(),
-      strip.text = element_text(size = 20, vjust = -.75),
-      panel.spacing = unit(-1, "lines"),
+      strip.text = element_text(size = 18, 
+                                hjust = 0,
+                                vjust = -1,
+                                margin = 
+                                  margin(.6, 0, -.3, 2.1, "cm")),
+      panel.spacing = unit(-1.5, "lines"),
       legend.title = element_blank(),
       strip.clip = "off",
-      plot.title = element_text(hjust = 0.5, size = 30)
+      plot.title = element_text(hjust = 0.5, size = 30),
+      legend.text = element_text(size = 19, vjust = .2)
     ) )
 
  ggsave("figs/scale1.png", items.1, width = 1500, height = 1500, units = "px")
@@ -139,11 +146,16 @@ alpha2 <- psych::alpha(scale2, check.keys = TRUE)
       axis.ticks = element_blank(),
       axis.text = element_blank(),
       panel.background = element_blank(),
-      strip.text = element_text(size = 25, vjust = -.75),
-      panel.spacing = unit(-1, "lines"),
+      strip.text = element_text(size = 18, 
+                                hjust = 0,
+                                vjust = -1,
+                                margin = 
+                                  margin(0, 0, -.3, 2.1, "cm")),
+      panel.spacing = unit(-1.5, "lines"),
       legend.title = element_blank(),
       strip.clip = "off",
-      plot.title = element_text(hjust = 0.5, size = 30)
+      plot.title = element_text(hjust = 0.5, size = 30),
+      legend.text = element_text(size = 19, vjust = .2)
     ) )
 
 ggsave("figs/scale2.png", items.2)
@@ -169,16 +181,20 @@ cor(meanscores[60:61])
            )) %>% 
   group_by(
     name, 
+    #race
     #sud_hx, 
     #gid1
     ) %>% 
   mutate(avg = mean(value, na.rm = TRUE)) %>% 
   ungroup() %>%
-  ggplot() + aes(x = name, y = value, color = name) +
+  ggplot() + aes(x = name, y = value, fill = name) +
   geom_violin() +
-  geom_jitter(alpha = .4, height = 0.1) +
-  geom_hline(aes(yintercept = avg, col = name)) +
+  geom_jitter(alpha = .3, height = 0.1) +
+  geom_hline(aes(yintercept = avg, col = name),
+             size = 2, alpha = .5) +
     labs(title = "Harm Reduction Subscale Scores")+
+    ggokabeito::scale_fill_okabe_ito() +
+    ggokabeito::scale_color_okabe_ito() +
   cowplot::theme_half_open() +
     theme(
       axis.title = element_blank(),
@@ -187,15 +203,17 @@ cor(meanscores[60:61])
       axis.line.y = element_line(),
       axis.line.y.right = element_line(),
       panel.background = element_blank(),
-      plot.title = element_text(hjust = 0.5, size = 25)
-    ))  +
-  facet_wrap(~ name, scales = "free_x")
+      plot.title = element_text(hjust = 0.5, size = 25),
+      strip.clip = "off"
+    )  +
+  facet_wrap(~ name, scales = "free_x",
+             strip.position = "bottom"))
 
 
 ggsave("figs/scores.png", scores)
 
 
-# Demos
+ Demos
 demos <- df %>% 
   select(age,gid1,race,ed,sud_hx) %>% 
   mutate(gid1 = 
