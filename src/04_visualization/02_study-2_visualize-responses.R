@@ -11,7 +11,7 @@ df <- read.csv("data/clean/20231020_hr-scale-confirmatory-data.csv")
 
 # Build Scales and Check Alphas ----
 scale1 <- df %>% 
-  select(q1, q6, q7, q16, q18, q19, q21, q39, q13)
+  select(q1, q6, q7, q16, q18, q19, q21, q13)
 scale2 <- df %>% 
   select(q42, q36, q33, q35, q34, q38, q41) 
 
@@ -35,7 +35,6 @@ item <- item %>%
 # Estimate alphas
 alpha1 <- psych::alpha(scale1, check.keys = TRUE)
 alpha2 <- psych::alpha(scale2, check.keys = TRUE)
-alpha3 <- psych::alpha(scale3, check.keys = TRUE)
 
 # Visualize Responses
 ## Scale 1

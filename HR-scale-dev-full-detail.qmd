@@ -379,7 +379,7 @@ data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2"
                          round(alpha3$total$raw_alpha, 2), 
                          round(glb3$glb, 2))) %>% 
   gt::gt(groupname_col = "Factor") %>% 
-  gt::tab_header(title = "Table 5: Reliability Statistics For Both Scales")
+  gt::tab_header(title = "Table 5: Reliability Statistics For All Scales")
 
 ```
 :::
@@ -654,7 +654,8 @@ plot(set_cfa_layout(
         edge.label.cex = .75,
         style = "ram",
         mar = c(5, 1, 5, 1),
-        intercepts = FALSE),
+        intercepts = FALSE,
+        DoNotPlot = TRUE),
   fcov_curve = 1.75,
   loading_position = .9))
 
@@ -759,24 +760,21 @@ initial <- efa$pattern %>%
     decimals = 3) 
 
 ```
+### Initial EFA Model
+An initial factor analysis revealed that a four factor solution provided poor fit for the data, with factor 1 explaining 41% of the total variance (eigenvalue = 14.57), factor 2 explaining 8% of the total variance (eigenvalue = 2.8), factor 3 explaining 3% of the total variance (eigenvalue = 1.05), and factor 4 explaining 2.5% of the total variance (eigenvalue = .90). This model had the following model fit indices: $\chi^2$(`r efa$dfMODEL`) = `r round(efa$chisqMODEL, 2)`, p = `r efa$pvalue`; CLI = `r round(efa$fit_coefs$CFI, 3)`; TLI = `r round(efa$fit_coefs$TLI, 3)`; RMSEA = `r round(efa$fit_coefs$RMSEA, 3)`. In addition to poor fit, there were numerous cross-loadings which exceeded the limit of difference of .2. Table 6 provides full factor loadings.
 
-An initial factor analysis revealed that a four factor solution provided poor fit for the data, with factor 1 explaining 41% of the total variance (eigenvalue = 14.57), factor 2 explaining 8% of the total variance (eigenvalue = 2.8), factor 3 explaining 3% of the total variance (eigenvalue = 1.05), and factor 4 explaining 2.5% of the total variance (eigenvalue = .90). This model had the following model fit indices: $\chi^2$(`r efa$dfMODEL`) = `r round(efa$chisqMODEL, 2)`, p = `r efa$pvalue`; CLI = `r round(efa$fit_coefs$CFI, 3)`; TLI = `r round(efa$fit_coefs$TLI, 3)`; RMSEA = `r round(efa$fit_coefs$RMSEA, 3)`. In addition to poor fit, there were numerous cross-loadings which exceeded the limit of difference of .2. Table 4 provides full factor loadings.
+After removing items with no primary loading or close cross loadings, a three factor solution provided the best fit. At this point, factor 3 consisted of 6 items which explained only 22% of the total variance and had 4 factor loadings less that .55. Between these quantitative reasons and inspecting the qualitative content of the items, they were removed. These were items 2, 9, 28, 29, and 32. The content of these items focused primarily on treatment aspects of harm reduction, where were less directly relevant to constructs of interest. 
 
 ```{r}
 # New Matrix
 hrMatrix <- 
   POLYCHORIC_R(
-    hr.ld %>% 
-      select(-c(q12, q30, q17, q3,
-                q43, q11, q22,
-                q27, q23, q26, q44,
-                q20, 
-                # < .4 loading
-                q41,
-                # Remove 3rd scale
-                q2, q9, q32, q28, q29,
-                # Remove from Scale 1
-                q15, q21, q37)),                         
+    hr %>% 
+      select(
+        # Factor 1
+        q1, q6, q7, q16, q18, q19, q21, q13,
+        # Factor 2
+        q42, q36, q33, q35, q34, q38, q41),                         
     verbose = FALSE)
 
 efa.final <- EFA.dimensions::EFA(hrMatrix,
@@ -804,8 +802,12 @@ final <- efa.final$pattern %>%
   fmt_number(
     columns = starts_with("Factor"),
     decimals = 3) 
+```
 
+### Final EFA Model
+The resulting model was a two factor model which consisted of 15 items. Factor 1 explained 59% of the variance, and Factor 2 explained 41% of the variance. This model had the following model fit indices: $\chi^2$(`r efa.final$dfMODEL`) = `r round(efa.final$chisqMODEL, 2)`, p = `r efa.final$pvalue`; CLI = `r round(efa.final$fit_coefs$CFI, 3)`; TLI = `r round(efa.final$fit_coefs$TLI, 3)`; RMSEA = `r round(efa.final$fit_coefs$RMSEA, 3)`, which indicated acceptable fit.
 
+```{r}
 left_join(
     initial$`_data`,
     final$`_data`,
@@ -817,9 +819,9 @@ left_join(
            levels = 
              c(
                # Factor 1
-               "q1", "q3", "q6", "q7", "q13", "q16", "q18", "q19", "q21","q39",
-               # Factor 2
-               "q33", "q36", "q38", "q41", "q42"))) %>% 
+               "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13",
+               # Factor 2 
+               "q42", "q36", "q33", "q35", "q34", "q38", "q41"))) %>% 
   janitor::clean_names() %>% 
   gt() %>% 
   tab_style(
@@ -831,17 +833,17 @@ left_join(
       # Factor 2
       cells_body(
         columns = factor_2_x,
-        rows = abs(factor_2_x) < .30 
+        rows = abs(factor_2_x) < .30
       ),
       # Factor 3
        cells_body(
-        columns = factor_3_x,
-        rows = abs(factor_3_x) < .30 
+        columns = factor_3,
+        rows = abs(factor_3) < .30
       ),
       # Factor 4
        cells_body(
         columns = factor_4,
-        rows = abs(factor_4) < .30 
+        rows = abs(factor_4) < .30
       ),
        # Factor 1 - Final
       cells_body(
@@ -850,36 +852,219 @@ left_join(
       # Factor 2 - Final
       cells_body(
         columns = factor_2_y,
-        rows = abs(factor_2_y) < .30 
+        rows = abs(factor_2_y) < .30
       )),
-    style = list(cell_text(color = 'gray'))) %>% 
+    style = list(cell_text(color = 'gray'))) %>%
   fmt_number(
     columns = starts_with("Factor"),
-    decimals = 3)  %>% 
-  fmt_missing() %>% 
+    decimals = 3)  %>%
+  fmt_missing() %>%
   tab_header(
-    title = "Table 4: Initial and Final Factor Structure"
-  ) %>% 
+    title = "Table 8: Initial and Final Factor Structure for 2 factors"
+  ) %>%
   tab_spanner(
     label = "Initial 4 Factor Solution",
     columns = 2:5
-  ) %>% 
+  ) %>%
   tab_spanner(
-    label = "Final 3 Factor Solution",
-    columns = 6:8
-  ) %>% 
+    label = "Final 2 Factor Solution",
+    columns = 6:7
+  ) %>%
   cols_label(
     factor_1_x  = "Factor 1",
     factor_2_x = "Factor 2",
-    factor_3_x = "Factor 3",
+    factor_3 = "Factor 3",
     factor_4 = "Factor 4",
     factor_1_y = "Factor 1",
     factor_2_y = "Factor 2"
   )
 ```
+The resulting scale consists of the following items:
+```{r}
+final.items <- hr %>% 
+      select(
+        # Factor 1
+        q1, q6, q7, q16, q18, q19, q21, q13,
+        # Factor 2
+        q42, q36, q33, q35, q34, q38, q41)
+
+
+items <- readr::read_csv("references/codebooks/20231025_hr-scale-codebook.csv")
+
+items %>% 
+  filter(
+    grepl("q", var_label)
+    ) %>% 
+  filter(var_label %in% 
+           c(# Factor 1
+             "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13",
+             # Factor 2 
+             "q42", "q36", "q33", "q35", "q34", "q38", "q41")) %>% 
+  select(-1) %>% 
+  mutate(
+    item = 
+      case_when(
+        var_label %in% c("q42", "q35", "q34", "q41") ~ paste0(item, "*"),
+        TRUE ~ item
+      ),
+    Factor = c(rep("Factor 1", 8), rep("Factor 2", 7))
+  ) %>% 
+  gt() %>% 
+  tab_header(
+    title = "Table 9: Final Items"
+  ) %>% 
+  cols_label(
+    var_label = "Item Label",
+    item = "Item Wording"
+  ) %>% 
+  tab_footnote("* indicates reverse coded items")
+
+```
 
 
 ## Scale Inspection
+::: columns
+
+::: {.column width="35%"}
+The first factor shows good reliability, with alpha, split half, and greatest lower bound of reliability greater than .93. The second factor has acceptable split half and internal reliability, but it's greatest lower bound is very low, which continues to be a concern. Overall, between the number of items, EFA fit statistics, and reliability, this model provides better fit and output compared to the initial model.
+:::
+
+::: {.column width="10%"}
+<!-- Empty -->
+:::
+
+::: {.column width="55%"}
+```{r}
+scale1 <- df %>% 
+  select(q1, q6, q7, q16, q18, q19, q21, q13)
+scale2 <- df %>% 
+  select(q42, q36, q33, q35, q34, q38, q41) 
+
+
+splithalf1 <- splitHalf(scale1) ; splithalf2 <- splitHalf(scale2)  
+alpha1 <- psych::alpha(scale1, check.keys = TRUE) ; alpha2 <- psych::alpha(scale2, check.keys = TRUE) 
+glb1 <- glb.algebraic(cor(scale1, use = "pairwise.complete.obs")) ; glb2 <- glb.algebraic(cor(scale2, use = "pairwise.complete.obs")) 
+
+data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2", "Factor 2"),
+           `Reliability Statistic` = c("Average Split Half", "Alpha", "Greatest Lower Bound",
+                                       "Average Split Half", "Alpha", "Greatest Lower Bound"),
+           Statistic = c(round(splithalf1$meanr,2),
+                         round(alpha1$total$raw_alpha, 2), 
+                         round(glb1$glb, 2),
+                         round(splithalf2$meanr,2),
+                         round(alpha2$total$raw_alpha, 2), 
+                         round(glb2$glb, 2))) %>% 
+  gt::gt(groupname_col = "Factor") %>% 
+  gt::tab_header(title = "Table 5: Reliability Statistics For All Scales")
+
+```
+:::
+:::
+
+### Item Response Distribution
+
+
+
+```{r}
+data.frame(alpha1$response.freq) %>% 
+  mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>% 
+  mutate(question = paste(item, question, sep = " - ")) %>% 
+  pivot_longer(c(X1:X5)) %>% 
+  mutate(Response = 
+           factor(case_when(
+             name == "X1" ~ "Strongly disagree",
+             name == "X2" ~ "Somewhat disagree",
+             name == "X3" ~ "Neither agree nor disagree",
+             name == "X4" ~ "Somewhat agree",
+             name == "X5" ~ "Strongly Agree"
+           ),
+             levels = c("Strongly disagree", 
+                        "Somewhat disagree",
+                        "Neither agree nor disagree",
+                        "Somewhat agree",
+                        "Strongly Agree"))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(aes(label = paste0(round(value*100,0),"%")), 
+            position = position_stack(vjust = .5),
+            size = 3) +
+   +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 2") +
+    theme(
+     axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 10),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 20)
+    )
+```
+
+
+```{r}
+data.frame(alpha2$response.freq) %>% 
+  mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>%
+  mutate(question = paste(item, question, sep = " - ")) %>% 
+  pivot_longer(c(X1:X5)) %>% 
+  mutate(Response = 
+  factor(case_when(
+    name == "X1" ~ "Strongly disagree",
+  name == "X2" ~ "Somewhat disagree",
+  name == "X3" ~ "Neither agree nor disagree",
+  name == "X4" ~ "Somewhat agree",
+  name == "X5" ~ "Strongly Agree"),
+  levels = c("Strongly disagree", 
+             "Somewhat disagree",
+             "Neither agree nor disagree",
+             "Somewhat agree",
+             "Strongly Agree"))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(aes(label = paste0(round(value*100,0),"%")), 
+            position = position_stack(vjust = .5),
+            size = 3) +
+  +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 2") +
+    theme(
+     axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 10),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 20)
+    )
+```
+
 
 # Study 3
 

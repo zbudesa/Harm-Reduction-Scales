@@ -173,7 +173,7 @@ hrMatrix4 <-
                 # Remove 3rd scale
                 q2, q9, q32, q28, q29,
                 # Remove from Scale 1
-                q15, q21, q37)))
+                q15, q21, q37, q39)))
 
 # EFA
 fa5 <- fa(hrMatrix4, n.obs = 301, nfactors = 2, 
@@ -198,7 +198,7 @@ psych::alpha(scale2, check.keys = TRUE)
 hrMatrix4 <- 
   POLYCHORIC_R(
     hr.ld %>% 
-      select(q1, q6, q7, q16, q18, q19, q21, q39, q13,
+      select(q1, q6, q7, q16, q18, q19, q21, q13,
              q42, q36, q33, q35, q34, q38, q41))
 
 # EFA
