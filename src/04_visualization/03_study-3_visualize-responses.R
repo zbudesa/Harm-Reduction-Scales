@@ -96,7 +96,7 @@ alpha2 <- psych::alpha(scale2, check.keys = TRUE)
       strip.clip = "off",
       plot.title = element_text(hjust = 0.5, size = 30),
       legend.text = element_text(size = 19, vjust = .2)
-    ) )
+    ))
 
  ggsave("figs/scale1.png", items.1, width = 1500, height = 1500, units = "px")
 

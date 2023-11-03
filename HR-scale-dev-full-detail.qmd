@@ -12,11 +12,8 @@ execute:
   message: false
 ---
 
-# Introduction
 
-This file documents the ongoing process of analysis and visualization of the Harm Reduction Development and Validation Studies.
-
-## Item Generation
+# Item Generation
 
 Item generation was undertaken in several stages. The first step in item generation consisted of items generated in two scales (harm reduction principles and harm reduction strategies) which were drafted by the authors and piloted with harm reduction workers in local training and harm reduction supply distribution evaluation. Following the initial pilot project, we revised and added items to address gaps that had been noted. The items were generated with regard to both the SAMHSA Harm Reduction Framework and the National Harm Reduction Coalition's Harm Reduction Principles(<https://harmreduction.org/about-us/principles-of-harm-reduction/>). Once the initial item pool was generated, we consulted with Dr. David Frank, a harm reduction expert and researcher. Based on his consultation, items were further modified to be accessible to a general population.
 
@@ -28,20 +25,23 @@ We used Wolf et al's (2023) Response Process Evaluation (RPE) method to ensure t
 library(gt)
 library(tidyverse)
 
-
 items <- readr::read_csv("references/codebooks/20231011_hr-scale-codebook.csv")
 
-items %>% 
+items <- items %>% 
   filter(
     grepl("q", var_label)) %>% 
-  select(-1) %>% 
+  mutate(item = 
+           str_remove_all(item, pattern = '\r\n')) %>% 
+  select(-1)
+  
+items %>% 
+  select(-var_label) %>% 
   gt() %>% 
   tab_header(
     title = "Table 1: Initial Item Set"
   ) %>% 
   cols_label(
-    var_label = "Item Label",
-    item = "Item Wording"
+    item = "Item"
   )
 ```
 
@@ -73,9 +73,8 @@ hr <- df %>% # N = 301
 Through Prolific, we recruited 301 participants for Study 1. These participants were 50% men (n = 149), 70% White (n = 210), 41% had completed a bachelor's degree (n = 122), 88% reported no history of a substance use disorder (SUD) diagnosis, and had an average age of 36. Table 2 provides additional detail about this sample.
 
 ```{r}
-#| column: margin
+
 library(gtsummary)
-library(gt)
 
 demos %>% 
   tbl_summary(
@@ -172,7 +171,10 @@ efa <- EFA.dimensions::EFA(hrMatrix,
 
 
 initial <- efa$pattern %>% 
-  as_tibble(rownames = "Item") %>% 
+  as_tibble(rownames = "q") %>% 
+  left_join(items,
+            by = c("q" = "var_label")) %>% 
+  select(q, item, 2:5) %>% 
   gt() %>% 
   tab_style(
     locations = list(
@@ -229,7 +231,10 @@ efa.final <- EFA.dimensions::EFA(hrMatrix,
                     verbose = FALSE)
 
 final <- efa.final$pattern %>% 
-  as_tibble(rownames = "Item") %>% 
+  as_tibble(rownames = "q") %>% 
+  left_join(items,
+            by = c("q" = "var_label")) %>% 
+  select(q, item, 2:5) %>%  
   gt() %>% 
   tab_style(
     locations = list(
@@ -257,10 +262,10 @@ left_join(
     initial$`_data`,
     final$`_data`,
     by = c(
-      "Item" = "Item"
+      "q" = "q"
     )) %>% 
   arrange(
-    factor(Item,
+    factor(q,
            levels = 
              c(
                # Factor 1
@@ -270,6 +275,7 @@ left_join(
                # Factor 3
                "q2", "q9", "q10", "q23", "q27", "q29", "q30"))) %>% 
   janitor::clean_names() %>% 
+  select(-q, -item_y) %>% 
   gt() %>% 
   tab_style(
     locations = list(
@@ -323,6 +329,7 @@ left_join(
     columns = 6:8
   ) %>% 
   cols_label(
+    item_x = "Item", 
     factor_1_x  = "Factor 1",
     factor_2_x = "Factor 2",
     factor_3_x = "Factor 3",
@@ -379,7 +386,7 @@ data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2"
                          round(alpha3$total$raw_alpha, 2), 
                          round(glb3$glb, 2))) %>% 
   gt::gt(groupname_col = "Factor") %>% 
-  gt::tab_header(title = "Table 5: Reliability Statistics For All Scales")
+  gt::tab_header(title = "Table 5: Reliability Statistics For All Scales") 
 
 ```
 :::
@@ -421,7 +428,7 @@ items.1 <-
     geom_text(aes(label = paste0(round(value*100,0),"%")), 
               position = position_stack(vjust = .5),
               size = 8, color = "white") +
-    ggokabeito::scale_fill_okabe_ito(
+  ggokabeito::scale_fill_okabe_ito(
       breaks = c("Strongly Disagree","Disagree","Somewhat Disagree",
                  "Somewhat Agree","Agree","Strongly Agree"
       )) +
@@ -566,14 +573,14 @@ items.2
 items.3
 ```
 
-As a result of this response option utilization, the decision was made to reduce from 6 options to 5 for future data collection efforts. The finaly factor solution was deemed acceptable for confirmatory studies.
+As a result of this response option utilization, the decision was made to reduce from 6 options to 5 for future data collection efforts. The final factor solution was deemed acceptable for confirmatory studies.
 
 
 # Study 2
-Study 2 was preregistered, which can be accessed at <https://osf.io/t5e2a>. In this study, we conducted confirmatory factor analysis using new data based on the factor structure in Study 1. The confirmatory factor analysis was fit using weighted least squares estimation treating categories as ordinal rather than numeric, which was a deviation from the preregistration. We will use two sets of criteria to assess model fit: First, we will use Hu & Bentler's (2009) cut offs of .95 for TLI and CFI, and .06 for RMSEA.
+Study 2 was preregistered, which can be accessed at <https://osf.io/t5e2a>. In this study, we conducted confirmatory factor analysis using new data based on the factor structure in Study 1. The confirmatory factor analysis was fit using weighted least squares estimation treating categories as ordinal rather than numeric, which was a deviation from the preregistration. We will use Hu & Bentler's (2009) cut offs of .95 for TLI and CFI, and .06 for RMSEA.
 
 ## Participants
-Through Prolific, we recruited 393 participants for Study 2. These participants were 52% men (n = 205), 70% White (n = 277), and most had completed a bachelor's degree (41%, n = 161), and 88% reported no history of SUD diagnosis. Table 6 provides detail about the participants. 
+Through Prolific, we recruited 402 participants for Study 2. These participants were 49% men (n = 196), 71% White (n = 282), and most had completed a bachelor's degree (37%, n = 150), and 90% (n = 362) reported no history of SUD diagnosis. Table 6 provides detail about the participants. 
 ```{r}
 df <- read.csv("data/clean/20231020_hr-scale-confirmatory-data.csv")
 
@@ -600,8 +607,6 @@ demos %>%
 The model from Study 1 was fit using confirmatory factor analysis using a weighted least squares estimator and ordinal indicators. This model showed moderate fit based on the selected fit statistics: $\chi^2$(206) = 1033.11, p > 0.001; CFI = .97; TLI = .97; SRMR = .27; RMSEA = .10. Based on CFI and TLI, the model had good fit. Based on SRMR and RMSEA, the model shows poor fit. Figure 4 provides factor loadings and covariances for the model.
 ```{r}
 #| column: margin
-
-
 
 
 library(lavaan)
@@ -731,7 +736,10 @@ efa <- EFA.dimensions::EFA(hrMatrix,
 
 
 initial <- efa$pattern %>% 
-  as_tibble(rownames = "Item") %>% 
+  as_tibble(rownames = "q") %>% 
+  left_join(items,
+            by = c("q" = "var_label")) %>% 
+  select(q, item, 2:5) %>%  
   gt() %>% 
   tab_style(
     locations = list(
@@ -772,7 +780,7 @@ hrMatrix <-
     hr %>% 
       select(
         # Factor 1
-        q1, q6, q7, q16, q18, q19, q21, q13,
+        q1, q6, q7, q16, q18, q19, q21, q13, q39,
         # Factor 2
         q42, q36, q33, q35, q34, q38, q41),                         
     verbose = FALSE)
@@ -785,7 +793,10 @@ efa.final <- EFA.dimensions::EFA(hrMatrix,
                     verbose = FALSE)
 
 final <- efa.final$pattern %>% 
-  as_tibble(rownames = "Item") %>% 
+  as_tibble(rownames = "q") %>% 
+  left_join(items,
+            by = c("q" = "var_label")) %>% 
+  select(q, item, 2:3) %>%  
   gt() %>% 
   tab_style(
     locations = list(
@@ -805,24 +816,25 @@ final <- efa.final$pattern %>%
 ```
 
 ### Final EFA Model
-The resulting model was a two factor model which consisted of 15 items. Factor 1 explained 59% of the variance, and Factor 2 explained 41% of the variance. This model had the following model fit indices: $\chi^2$(`r efa.final$dfMODEL`) = `r round(efa.final$chisqMODEL, 2)`, p = `r efa.final$pvalue`; CLI = `r round(efa.final$fit_coefs$CFI, 3)`; TLI = `r round(efa.final$fit_coefs$TLI, 3)`; RMSEA = `r round(efa.final$fit_coefs$RMSEA, 3)`, which indicated acceptable fit.
+The resulting model was a two factor model which consisted of 15 items. Factor 1 explained 59% of the variance, and Factor 2 explained 41% of the variance. This model had the following model fit indices: $\chi^2$(`r efa.final$dfMODEL`) = `r round(efa.final$chisqMODEL, 2)`, p = `r efa.final$pvalue`; CLI = `r round(efa.final$fit_coefs$CFI, 3)`; TLI = `r round(efa.final$fit_coefs$TLI, 3)`; RMSEA = `r round(efa.final$fit_coefs$RMSEA, 3)`, which indicated acceptable fit. Due to the low loading in this study, item "q39" is a candidate for removal following the next round of data collection.
 
 ```{r}
 left_join(
     initial$`_data`,
     final$`_data`,
     by = c(
-      "Item" = "Item"
+      "q" = "q"
     )) %>% 
   arrange(
-    factor(Item,
+    factor(q,
            levels = 
              c(
                # Factor 1
-               "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13",
+               "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13", "q39",
                # Factor 2 
                "q42", "q36", "q33", "q35", "q34", "q38", "q41"))) %>% 
   janitor::clean_names() %>% 
+  select(-q, -item_y) %>% 
   gt() %>% 
   tab_style(
     locations = list(
@@ -871,6 +883,7 @@ left_join(
     columns = 6:7
   ) %>%
   cols_label(
+    item_x = "Item",
     factor_1_x  = "Factor 1",
     factor_2_x = "Factor 2",
     factor_3 = "Factor 3",
@@ -884,7 +897,7 @@ The resulting scale consists of the following items:
 final.items <- hr %>% 
       select(
         # Factor 1
-        q1, q6, q7, q16, q18, q19, q21, q13,
+        q1, q6, q7, q16, q18, q19, q21, q13, q39,
         # Factor 2
         q42, q36, q33, q35, q34, q38, q41)
 
@@ -897,25 +910,31 @@ items %>%
     ) %>% 
   filter(var_label %in% 
            c(# Factor 1
-             "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13",
+             "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13", "q39",
              # Factor 2 
              "q42", "q36", "q33", "q35", "q34", "q38", "q41")) %>% 
-  select(-1) %>% 
+  arrange(
+      factor(
+    var_label,
+    levels = c(# Factor 1
+             "q1", "q6", "q7", "q16", "q18", "q19", "q21", "q13", "q39",
+             # Factor 2 
+             "q42", "q36", "q33", "q35", "q34", "q38", "q41"))) %>% 
   mutate(
     item = 
       case_when(
-        var_label %in% c("q42", "q35", "q34", "q41") ~ paste0(item, "*"),
+        var_label %in% c("q42", "q35", "q34", "q41", "q39") ~ paste0(item, "*"),
         TRUE ~ item
       ),
-    Factor = c(rep("Factor 1", 8), rep("Factor 2", 7))
+    Factor = c(rep("Factor 1", 9), rep("Factor 2", 7))
   ) %>% 
-  gt() %>% 
+    select(Factor, item) %>%
+  gt(groupname_col = "Factor") %>% 
   tab_header(
     title = "Table 9: Final Items"
   ) %>% 
   cols_label(
-    var_label = "Item Label",
-    item = "Item Wording"
+    item = ""
   ) %>% 
   tab_footnote("* indicates reverse coded items")
 
@@ -936,7 +955,7 @@ The first factor shows good reliability, with alpha, split half, and greatest lo
 ::: {.column width="55%"}
 ```{r}
 scale1 <- df %>% 
-  select(q1, q6, q7, q16, q18, q19, q21, q13)
+  select(q1, q6, q7, q16, q18, q19, q21, q13, q39)
 scale2 <- df %>% 
   select(q42, q36, q33, q35, q34, q38, q41) 
 
@@ -955,7 +974,7 @@ data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2"
                          round(alpha2$total$raw_alpha, 2), 
                          round(glb2$glb, 2))) %>% 
   gt::gt(groupname_col = "Factor") %>% 
-  gt::tab_header(title = "Table 5: Reliability Statistics For All Scales")
+  gt::tab_header(title = "Table 10: Reliability Statistics For All Scales")
 
 ```
 :::
@@ -963,15 +982,22 @@ data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2"
 
 ### Item Response Distribution
 
-
+Both factors show a similar distribution to in the initial study. Some more extreme response options show under use, but across all items response options are used. 
 
 ```{r}
+#| column: screen
+#| out-width: 80%
+#| layout-ncol: 2
+#| fig-cap: 
+#|  - "Figure 5: Study 2 EFA, Factor 1 Response Distribution"
+#|  - "Figure 6: Study 2 EFA, Factor 2 Response Distribution"
+
+
 data.frame(alpha1$response.freq) %>% 
   mutate(item = rownames(.)) %>% 
   left_join(item %>% 
               select(qname, question), 
             by = c("item" = "qname")) %>% 
-  mutate(question = paste(item, question, sep = " - ")) %>% 
   pivot_longer(c(X1:X5)) %>% 
   mutate(Response = 
            factor(case_when(
@@ -979,27 +1005,26 @@ data.frame(alpha1$response.freq) %>%
              name == "X2" ~ "Somewhat disagree",
              name == "X3" ~ "Neither agree nor disagree",
              name == "X4" ~ "Somewhat agree",
-             name == "X5" ~ "Strongly Agree"
+             name == "X5" ~ "Strongly agree"
            ),
              levels = c("Strongly disagree", 
                         "Somewhat disagree",
                         "Neither agree nor disagree",
                         "Somewhat agree",
-                        "Strongly Agree"))) %>% 
+                        "Strongly agree"))) %>% 
   ggplot() +
   aes(x = question, y = value, fill = Response) +
   geom_bar(stat = "identity", position = "stack") +
   geom_text(aes(label = paste0(round(value*100,0),"%")), 
             position = position_stack(vjust = .5),
             size = 3) +
-   +
     coord_flip() +
     ggforce::facet_col(facets = vars(question), 
                        scales = "free_y", 
                        space = "free",
                        labeller = label_wrap_gen(width = 100)
     ) +
-    labs(title = "Factor 2") +
+    labs(title = "Factor 1") +
     theme(
      axis.title = element_blank(),
       strip.background = element_blank(),
@@ -1013,16 +1038,13 @@ data.frame(alpha1$response.freq) %>%
       strip.clip = "off",
       plot.title = element_text(hjust = 0.5, size = 20)
     )
-```
 
 
-```{r}
 data.frame(alpha2$response.freq) %>% 
   mutate(item = rownames(.)) %>% 
   left_join(item %>% 
               select(qname, question), 
             by = c("item" = "qname")) %>%
-  mutate(question = paste(item, question, sep = " - ")) %>% 
   pivot_longer(c(X1:X5)) %>% 
   mutate(Response = 
   factor(case_when(
@@ -1030,19 +1052,18 @@ data.frame(alpha2$response.freq) %>%
   name == "X2" ~ "Somewhat disagree",
   name == "X3" ~ "Neither agree nor disagree",
   name == "X4" ~ "Somewhat agree",
-  name == "X5" ~ "Strongly Agree"),
+  name == "X5" ~ "Strongly agree"),
   levels = c("Strongly disagree", 
              "Somewhat disagree",
              "Neither agree nor disagree",
              "Somewhat agree",
-             "Strongly Agree"))) %>% 
+             "Strongly agree"))) %>% 
   ggplot() +
   aes(x = question, y = value, fill = Response) +
   geom_bar(stat = "identity", position = "stack") +
   geom_text(aes(label = paste0(round(value*100,0),"%")), 
             position = position_stack(vjust = .5),
             size = 3) +
-  +
     coord_flip() +
     ggforce::facet_col(facets = vars(question), 
                        scales = "free_y", 
@@ -1067,30 +1088,299 @@ data.frame(alpha2$response.freq) %>%
 
 
 # Study 3
+Study 3 was preregistered, which can be accessed at <https://osf.io/q4uzv>. In this study, we conducted confirmatory factor analysis using new data based on the factor structure in Study 2. The confirmatory factor analysis was fit using weighted least squares estimation treating categories as ordinal rather than numeric, which was a deviation from the preregistration. We will use Hu & Bentler's (2009) cut offs of .95 for TLI and CFI, and .06 for RMSEA.
 
 ## Participants
+Through Prolific, we recruited 402 participants for Study 2. These participants were 52% men (n = 205), 70% White (n = 277), and most had completed a bachelor's degree (41%, n = 161), and 88% reported no history of SUD diagnosis. Table 6 provides detail about the participants. 
 ```{r}
-# df <- read.csv("data/clean/20231020_hr-scale-confirmatory-data2.csv")
-# 
-# 
-# demos <- df %>% 
-#   select(age, gid1, race, ed, sud_hx)
-# 
-# demos %>% 
-#   tbl_summary(
-#     missing = "no",
-#     statistic = list(age = "{mean} ({sd})"),
-#     digits = list(age ~ c(2,2)),
-#     sort = list(everything() ~ "frequency"),
-#     label = list(
-#       age ~ "Age", gid1 ~ "Gender Identity",
-#       race ~ "Race/Ethnicity", ed ~ "Highest Level of Education",
-#       sud_hx ~ "History of Substance Use Disorder Diagnosis")
-#               ) %>% 
-#   as_gt() %>% 
-#   tab_header(title = "Table X: Study 3 Participants")
+df <- read.csv("data/clean/20231025_hr-scale-confirmatory-data2.csv")
+
+
+demos <- df %>%
+  select(age, gid1, race, ed, sud_hx)
+
+demos %>%
+  tbl_summary(
+    missing = "no",
+    statistic = list(age = "{mean} ({sd})"),
+    digits = list(age ~ c(2,2)),
+    sort = list(everything() ~ "frequency"),
+    label = list(
+      age ~ "Age", gid1 ~ "Gender Identity",
+      race ~ "Race/Ethnicity", ed ~ "Highest Level of Education",
+      sud_hx ~ "History of Substance Use Disorder Diagnosis")
+              ) %>%
+  as_gt() %>%
+  tab_header(title = "Table 11: Study 3 Participants")
 ```
 
-# Confirmatory Factor Analysis
+## Confirmatory Factor Analysis
+The model developed in study 2 was fit to study 3's data using confirmatory factor analysis with least square estimation and ordingal indicators. The model showed acceptablve fit on most indicators: $\chi^2$ (103) = 314.68, p < .001; CFI = .98, TLI = .97; RMSEA = .07; SRMR = .19.  Figure 7 provides factor loadings and covariances for the model.
+```{r}
+#| column: margin
+
+# Import data
+df <- read.csv("data/clean/20231025_hr-scale-confirmatory-data2.csv")
+
+# Select items
+hr <- df %>% # N = 301
+  select(starts_with("q"), -Q_RecaptchaScore)
+
+# Study 2 Model Fit
+model <-  'F1 =~ q21 + q1 + q6 + q7 + q16 + q18 + q19 + q13 + q39
+           F2 =~ q36 + q42 + q33 + q35 + q34 + q38 + q41
+
+           F1 ~~ F2' 
+
+fit <- cfa(
+  model,
+  data = df,
+  ordered = TRUE,
+  estimator = "WLS",
+  std.lv = TRUE
+)
+
+
+fitmeasures(fit,
+            c("cfi", "tli", "srmr", "rmsea", "chisq", "df", "pvalue")) %>% 
+  as_tibble(rownames = "Item") %>% 
+  gt() %>% 
+  tab_header(
+    title = "Table 12: Study 3 CFA Fit Statistics"
+  ) %>% 
+  fmt_number(columns = 2, 
+             decimals = 2)
+
+
+
+```
+
+```{r}
+#| column: page
+#| fig-cap: "Figure 7: Study 3 CFA"
+
+plot(set_cfa_layout(
+  semPaths(fit, whatLabels="est",
+        sizeMan = 3,
+        node.width = 1,
+        thresholds = FALSE,
+        edge.label.cex = .75,
+        style = "ram",
+        mar = c(5, 1, 5, 1),
+        intercepts = FALSE,
+        DoNotPlot = TRUE),
+  fcov_curve = 1.75,
+  loading_position = .9))
+
+
+```
+
 
 ## Scale Inspection
+```{r}
+meanscores <- df %>%
+  mutate(across(c(q39, q42, q35, q34, q41), 
+                ~ 6 - .),
+         Strategies = 
+           rowMeans(df %>% select(all_of(colnames(scale1))), na.rm = TRUE),
+         Principles = 
+           rowMeans(df %>% select(all_of(colnames(scale2))), na.rm = TRUE))
+```
+
+```{r}
+#| column: margin
+
+scale1 <- df %>% 
+  select(q1, q6, q7, q16, q18, q19, q21, q13, q39)
+scale2 <- df %>% 
+  select(q42, q36, q33, q35, q34, q38, q41) 
+
+
+splithalf1 <- splitHalf(scale1) ; splithalf2 <- splitHalf(scale2)  
+alpha1 <- psych::alpha(scale1, check.keys = TRUE) ; alpha2 <- psych::alpha(scale2, check.keys = TRUE) 
+glb1 <- glb.algebraic(cor(scale1, use = "pairwise.complete.obs")) ; glb2 <- glb.algebraic(cor(scale2, use = "pairwise.complete.obs")) 
+
+data.frame(Factor = c("Factor 1", "Factor 1", "Factor 1", "Factor 2", "Factor 2", "Factor 2"),
+           `Reliability Statistic` = c("Average Split Half", "Alpha", "Greatest Lower Bound",
+                                       "Average Split Half", "Alpha", "Greatest Lower Bound"),
+           Statistic = c(round(splithalf1$meanr,2),
+                         round(alpha1$total$raw_alpha, 2), 
+                         round(glb1$glb, 2),
+                         round(splithalf2$meanr,2),
+                         round(alpha2$total$raw_alpha, 2), 
+                         round(glb2$glb, 2))) %>% 
+  gt::gt(groupname_col = "Factor") %>% 
+  gt::tab_header(title = "Table 10: Reliability Statistics For All Scales")
+
+```
+The first factor shows good reliability, with alpha, split half, and greatest lower bound of reliability greater than .93. The second factor has acceptable split half and internal reliability, but it's greatest lower bound is very low, which continues to be a concern. Overall, between the number of items, EFA fit statistics, and reliability, this model provides better fit and output compared to the initial model.
+
+Table 11 provides detail about mean, median, and standard deviation for both subscales. The Strategies subscale may show some ceiling effect, as scores are higher above the mean, while the Principles subscale shows  normal, but slightly skewed distribution. The two subscales show little to no relationship (r = -0.07, 95% CI -0.16, 0.03).
+
+```{r}
+gtExtras::gt_plt_summary(meanscores[60:61],
+                         title = "Table 11: Mean Score for Both Factors")
+```
+
+
+### Item Response Distribution
+
+Both factors show a similar distribution to in the initial study. Some more extreme response options show under use, but across all items response options are used. 
+
+```{r}
+#| column: screen
+#| out-width: 80%
+#| layout-ncol: 2
+#| fig-cap: 
+#|  - "Figure 8: Study 3, Strategies Subscale Response Distribution"
+#|  - "Figure 9: Study 3, Principles Subscale Response Distribution"
+
+
+data.frame(alpha1$response.freq) %>% 
+  mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>% 
+  pivot_longer(c(X1:X5)) %>% 
+  mutate(Response = 
+           factor(case_when(
+             name == "X1" ~ "Strongly disagree",
+             name == "X2" ~ "Somewhat disagree",
+             name == "X3" ~ "Neither agree nor disagree",
+             name == "X4" ~ "Somewhat agree",
+             name == "X5" ~ "Strongly Agree"
+           ),
+             levels = c("Strongly disagree", 
+                        "Somewhat disagree",
+                        "Neither agree nor disagree",
+                        "Somewhat agree",
+                        "Strongly Agree"))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(aes(label = paste0(round(value*100,0),"%")), 
+            position = position_stack(vjust = .5),
+            size = 3) +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 1") +
+    theme(
+     axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 10),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 20)
+    )
+
+
+data.frame(alpha2$response.freq) %>% 
+  mutate(item = rownames(.)) %>% 
+  left_join(item %>% 
+              select(qname, question), 
+            by = c("item" = "qname")) %>%
+  pivot_longer(c(X1:X5)) %>% 
+  mutate(Response = 
+  factor(case_when(
+    name == "X1" ~ "Strongly disagree",
+  name == "X2" ~ "Somewhat disagree",
+  name == "X3" ~ "Neither agree nor disagree",
+  name == "X4" ~ "Somewhat agree",
+  name == "X5" ~ "Strongly Agree"),
+  levels = c("Strongly disagree", 
+             "Somewhat disagree",
+             "Neither agree nor disagree",
+             "Somewhat agree",
+             "Strongly Agree"))) %>% 
+  ggplot() +
+  aes(x = question, y = value, fill = Response) +
+  geom_bar(stat = "identity", position = "stack") +
+  geom_text(aes(label = paste0(round(value*100,0),"%")), 
+            position = position_stack(vjust = .5),
+            size = 3) +
+    coord_flip() +
+    ggforce::facet_col(facets = vars(question), 
+                       scales = "free_y", 
+                       space = "free",
+                       labeller = label_wrap_gen(width = 100)
+    ) +
+    labs(title = "Factor 2") +
+    theme(
+     axis.title = element_blank(),
+      strip.background = element_blank(),
+      legend.position = "top",
+      axis.ticks = element_blank(),
+      axis.text = element_blank(),
+      panel.background = element_blank(),
+      strip.text = element_text(size = 10),
+      panel.spacing = unit(-.5, "lines"),
+      legend.title = element_blank(),
+      strip.clip = "off",
+      plot.title = element_text(hjust = 0.5, size = 20)
+    )
+```
+
+Finally, figure 10 shows mean score distributions for both scales in the current sample. As noted above, the Strategies subscale may show some ceiling effect, while the Principles subscale does not. While these two separate subscales need additional evidence, this factor structure for these 16 items demonstrates acceptable reliability and structural validity. 
+```{r}
+#| fig-cap: "Figure 10: Mean Score Distribution"
+(scores <- meanscores %>% 
+  pivot_longer(Strategies:Principles) %>% 
+  mutate(sud_hx = 
+           case_when(
+             sud_hx == "I don’t know" ~ "No",
+             sud_hx == "Prefer not to say" ~ "No",
+             TRUE ~ sud_hx
+           )) %>% 
+  group_by(
+    name, 
+    #race
+    #sud_hx, 
+    #gid1
+    ) %>% 
+  mutate(avg = mean(value, na.rm = TRUE)) %>% 
+  ungroup() %>%
+  ggplot() + aes(x = name, y = value, fill = name) +
+  geom_violin() +
+  geom_jitter(alpha = .3, height = 0.1) +
+  geom_hline(aes(yintercept = avg, col = name),
+             size = 2, alpha = .5) +
+    labs(title = "Harm Reduction Subscale Scores")+
+    ggokabeito::scale_fill_okabe_ito() +
+    ggokabeito::scale_color_okabe_ito() +
+  cowplot::theme_half_open() +
+    theme(
+      axis.title = element_blank(),
+      legend.position = "none",
+      axis.text.x = element_blank(),
+      axis.line.y = element_line(),
+      axis.line.y.right = element_line(),
+      panel.background = element_blank(),
+      plot.title = element_text(hjust = 0.5, size = 25),
+      strip.clip = "off"
+    )  +
+  facet_wrap(~ name, scales = "free_x",
+             strip.position = "bottom"))
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
