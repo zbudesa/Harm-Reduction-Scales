@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/1108557/d3134bd70a464438bfb97c03b6ee89dc
+bundleId: https://api.rpubs.com/api/v1/document/1108557/d3134bd70a464438bfb97c03b6ee89dc
+url: http://rpubs.com/zbudesa/1108557
+when: 1699472256.43547
+lastSyncTime: 1699472256.43548

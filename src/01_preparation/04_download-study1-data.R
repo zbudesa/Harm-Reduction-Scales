@@ -38,6 +38,7 @@ demo_resp <- fetch_survey(surveyID =
                             surveys$id[surveys$name == "Harm Reduction Scales - Study 1"],
                           force_request = TRUE,
                           include_display_order = FALSE,
+                          include_embedded = c("PROLIFIC_PID", "Q_RecaptchaScore"),
                           label = TRUE, convert = FALSE)
 
 demo_resp <- demo_resp %>% 

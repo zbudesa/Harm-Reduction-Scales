@@ -79,18 +79,16 @@ View(
 # Building Dataset with Removed Local Dependence Items
 hr.ld <-
   hr %>% 
-  select(-c(q4:q5, 
+  select(-c(q4,
+            q5, 
             q8,
             q45, 
             q24,
             q25, 
             q32,
             q22, 
-            
-            
             q40,
-            q31,  
-            ))
+            q31))
 
 hrMatrix <- POLYCHORIC_R(hr.ld)
 

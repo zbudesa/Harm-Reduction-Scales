@@ -104,7 +104,7 @@ df %>%
                                 is.na(.) ~ NA
                                 )))), 
               na.rm = TRUE),
-    .after = "race-eth-choice") %>% View()
+    .after = "race-eth-choice") %>% 
   filter(multiracial > 1)
   
 
