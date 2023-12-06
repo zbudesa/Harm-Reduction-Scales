@@ -50,6 +50,6 @@ df <- item_resp %>%
             by = "ResponseId")
 
 # Write File
-write.csv(df, "data/raw/20231011_hr-scale-exploratory-data.csv")
+write.csv(df, "data/raw/01_study1_data.csv")
 
 

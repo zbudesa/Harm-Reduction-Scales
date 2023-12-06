@@ -24,7 +24,7 @@ fa.parallel(items, cor = "poly", fa = "fa", fm = "ml")
 
 # Factor Analysis
 ## Initial Model
-fa1 <- fa(items1, nfactors = 4, rotate = "oblimin", cor = "poly", fm = "mle")
+fa1 <- fa(items1, nfactors = 5, rotate = "oblimin", cor = "poly", fm = "mle")
 psych::print.psych(fa1, sort = "TRUE", cut = .3)
 
 ## Items removed in the order they were removed
@@ -32,14 +32,14 @@ items2 <- items1 %>%
   select(-c(q17, q12, q43, q15, q35, q37, q26, q34, q44, q20, q11, q28, q14, q27, q30, q3, q13))
 
 ## Final Model
-fa2 <- fa(items2, n.obs = 301, nfactors = 3, rotate = "oblimin", cor = "poly", fm = "mle")
+fa2 <- fa(items2, nfactors = 3, rotate = "oblimin", cor = "poly", fm = "mle")
 psych::print.psych(fa2, sort = "TRUE", cut = .3)
 
 # Scale Reliability
 scale1 <- data %>% 
   select(q1, q18, q7, q19, q21, q6, q16, q39)
 scale2 <- data %>% 
-  select(q42, q36, q38, q33, q41)
+  select(q36, q42, q38, q33, q41)
 scale3 <- data %>% 
   select(q9, q2, q23, q10, q29)
 

@@ -157,7 +157,7 @@ items.3 <- data.frame(alpha3$response.freq) %>%
 
 
 meanscores <- df %>%
-  mutate(across(c(q39, q34, q41, q42), 
+  mutate(across(c(q39, q41, q42), 
                 ~ 7 - .),
          fact1 = 
            rowMeans(df %>% select(all_of(colnames(scale1))), na.rm = TRUE),
@@ -166,7 +166,7 @@ meanscores <- df %>%
          fact3 = 
            rowMeans(df %>% select(all_of(colnames(scale3))), na.rm = TRUE))
 
-cor(meanscores[59:61])
+cor(meanscores[63:65], use = "na.or.complete")
 
 meanscores %>% 
   pivot_longer(fact1:fact3) %>% 
@@ -185,7 +185,7 @@ meanscores %>%
            )) %>% 
   group_by(
     name, 
-    sud_hx, 
+    #sud_hx, 
     #gid1
     ) %>% 
   mutate(avg = mean(value, na.rm = TRUE)) %>% 
@@ -193,8 +193,8 @@ meanscores %>%
   ggplot() + aes(x = name, y = value, color = name) +
   geom_violin() +
   geom_jitter(alpha = .4, height = 0.1) +
-  geom_hline(aes(yintercept = avg, col = name)) +
-  facet_grid(~ sud_hx, scales = "free")
+  geom_hline(aes(yintercept = avg, col = name)) 
+  #facet_grid(~ sud_hx, scales = "free")
 
 mod <- fa(df %>% select(c(
   # Factor 1

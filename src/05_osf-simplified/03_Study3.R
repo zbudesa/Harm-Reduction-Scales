@@ -9,7 +9,7 @@ library(lavaan)
 library(tidyverse)
 
 # Data
-data <- read.csv(file.choose())
+data <- read.csv("data/osf/03_study3_data.csv")
 items <- data %>% select(starts_with("q"), -Q_RecaptchaScore)
 
 # Initial Model

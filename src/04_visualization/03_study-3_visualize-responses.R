@@ -7,7 +7,7 @@ library(psych)
 library(tidyverse)
 
 # Import data
-df <- read.csv("data/clean/20231025_hr-scale-confirmatory-data2.csv")
+df <- read.csv("data/clean/03_study3_data_clean.csv")
 
 # Build Scales and Check Alphas ----
 scale1 <- df %>% 
@@ -162,14 +162,19 @@ ggsave("figs/scale2.png", items.2)
 
 
 meanscores <- df %>%
-  mutate(across(c(q39, q42, q35, q34, q41), 
-                ~ 6 - .),
+  mutate(q39r = 6 - q39,
+         q42r = 6 - q42,
+         q35r = 6 - q35,
+         q34r = 6 - q34,
+         q41r = 6 - q41)
+meanscores <- meanscores %>% 
+  mutate(
          Strategies = 
-           rowMeans(df %>% select(all_of(colnames(scale1))), na.rm = TRUE),
+           rowMeans(meanscores %>% select(q1, q6, q7, q16, q18, q19, q21, q13), na.rm = TRUE),
          Principles = 
-           rowMeans(df %>% select(all_of(colnames(scale2))), na.rm = TRUE))
+           rowMeans(meanscores %>% select(q33, q42r, q36, q35r, q38, q34r, q41r), na.rm = TRUE))
 
-cor(meanscores[60:61])
+cor(meanscores[60:61], use = "na.or.complete")
 
 (scores <- meanscores %>% 
   pivot_longer(Strategies:Principles) %>% 

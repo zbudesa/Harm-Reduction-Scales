@@ -59,7 +59,7 @@ library(EFA.dimensions)
 library(GPArotation)
 
 # Import Data
-df <- read.csv("data/clean/20231011_hr-scale-exploratory-data.csv")
+df <- read.csv("data/clean/01_study1_data_clean.csv")
 
 # Build Demographic Data Set
 demos <- df %>% 
@@ -145,9 +145,9 @@ After removing items which showed excessive local dependence, bartlett's spheric
 ### Parallel Analysis
 
 ```{r}
-fa.para <- fa.parallel(hr1,
-                       fm = "ml", 
-                       cor = "poly")
+# fa.para <- fa.parallel(hr1,
+#                        fm = "ml", 
+#                        cor = "poly")
 
 ```
 
@@ -571,7 +571,7 @@ Study 2 was preregistered, which can be accessed at <https://osf.io/t5e2a>. In t
 ## Participants
 Through Prolific, we recruited 402 participants for Study 2. These participants were 49% men (n = 196), 71% White (n = 282), and most had completed a bachelor's degree (37%, n = 150), and 90% (n = 362) reported no history of SUD diagnosis. Table 6 provides detail about the participants. 
 ```{r}
-df <- read.csv("data/clean/20231020_hr-scale-confirmatory-data.csv")
+df <- read.csv("data/clean/02_study2_data_clean.csv")
 
 demos <- df %>% 
   select(age, gid1, race, ed, sud_hx)
@@ -1078,7 +1078,7 @@ Study 3 was preregistered, which can be accessed at <https://osf.io/q4uzv>. In t
 ## Participants
 Through Prolific, we recruited 402 participants for Study 2. These participants were 52% men (n = 205), 70% White (n = 277), and most had completed a bachelor's degree (41%, n = 161), and 88% reported no history of SUD diagnosis. Table 6 provides detail about the participants. 
 ```{r}
-df <- read.csv("data/clean/20231025_hr-scale-confirmatory-data2.csv")
+df <- read.csv("data/clean/03_study3_data_clean.csv")
 
 
 demos <- df %>%
@@ -1162,12 +1162,16 @@ plot(set_cfa_layout(
 ## Scale Inspection
 ```{r}
 meanscores <- df %>%
-  mutate(across(c(q42, q35, q34, q41), 
-                ~ 6 - .),
+  mutate(q42r = 6 - q42,
+         q35r = 6 - q35,
+         q34r = 6 - q34,
+         q41r = 6 - q41)
+meanscores <- meanscores %>% 
+  mutate(
          Strategies = 
-           rowMeans(df %>% select(all_of(colnames(scale1))), na.rm = TRUE),
+           rowMeans(meanscores %>% select(q7, q1, q6, q24, q14, q18, q19, q13, q21), na.rm = TRUE),
          Principles = 
-           rowMeans(df %>% select(all_of(colnames(scale2))), na.rm = TRUE))
+           rowMeans(meanscores %>% select(q42r, q36, q33, q35r, q38, q34r, q41r), na.rm = TRUE))
 ```
 
 ```{r}
@@ -1203,6 +1207,8 @@ Table 11 provides detail about mean, median, and standard deviation for both sub
 ```{r}
 gtExtras::gt_plt_summary(meanscores[60:61],
                          title = "Table 11: Mean Score for Both Factors")
+
+cor(meanscores[64:65])
 ```
 
 

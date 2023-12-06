@@ -38,18 +38,18 @@ psych::print.psych(fa2, sort = "TRUE", cut = .3)
 
 ## Final 2 Factor Model, Remove Third Factor & Remove Low Loadings
 items4 <- items3 %>% 
-  select(-c(q2, q9, q10, q28,
+  select(-c(q2, q9, q10, q28, q29, 
             # Remove from Scale 1
-            q37, q32, q29, q39, q15, q16))
+            q38, q39))
 
 fa3 <- fa(items4, nfactors = 2, rotate = "oblimin", cor = "poly", fm = "mle")
 psych::print.psych(fa3, sort = "TRUE", cut = .3)
 
 # Scale Reliability
 scale1 <- data %>% 
-  select(q7, q1, q6, q18, q19, q21, q24, q14, q13)
+  select(q7, q1, q6, q24, q14, q37, q18, q19, q21, q32, q13, q16, q15)
 scale2 <- data %>% 
-  select(q33, q42, q36, q35, q38, q34, q41)
+  select(q42, q36, q33, q35, q34, q41)
 
 # Alpha
 psych::alpha(scale1, check.keys = TRUE)

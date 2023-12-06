@@ -6,7 +6,7 @@
 library(tidyverse)
 
 # Import Data
-df <- data.table::fread("data/raw/20231011_hr-scale-exploratory-data.csv")
+df <- data.table::fread("data/raw/01_study1_data.csv")
 
 # Inspect time & ReCaptcha Data
 df %>% 
@@ -152,7 +152,7 @@ df <- df %>%
 
 
 # Write to file
-write.csv(df, "data/clean/20231011_hr-scale-exploratory-data.csv")
+write.csv(df, "data/clean/01_study1_data_clean.csv")
 
 
 

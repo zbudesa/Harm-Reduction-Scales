@@ -6,23 +6,7 @@
 library(tidyverse)
 
 # Import Data
-df <- data.table::fread("data/raw/20231025_hr-scale-confirmatory-data2.csv")
-
-# Clean & fix item coding
-df <- df %>% 
-  mutate(across(c(q1:q12,q13:q45), 
-                ~ case_when(
-                  . == "Strongly disagree" |
-                    . == "Strongly Disagree" ~ 1,
-                  . == "Somewhat disagree" ~ 2,
-                  . == "Neither agree nor disagree" ~ 3,
-                  . == "Somewhat agree" ~ 4,
-                  . == "Strongly agree" ~ 5)),
-         attn = case_when(
-           attn == "Somewhat disagree" ~ 1,
-           attn != "Somewhat disagree" ~ 0
-         )
-  )
+df <- data.table::fread("data/raw/03_study3_data.csv")
 
 # Inspect time & ReCaptcha Data
 df %>% 
@@ -167,7 +151,7 @@ df <-
   select(-`race-eth-id_7`)
 
 # Write to file
-write.csv(df, "data/clean/20231025_hr-scale-confirmatory-data2.csv")
+write.csv(df, "data/clean/03_study3_data_clean.csv")
 
 
 

@@ -6,29 +6,7 @@
 library(tidyverse)
 
 # Import Data
-df <- data.table::fread("data/raw/20231020_hr-scale-confirmatory-data.csv")
-
-# Clean & fix item coding
-df <- df %>% 
-  mutate(across(c(q1:q12,q14:q45), 
-                ~ case_when(
-                  . == "Strongly disagree" ~ 1,
-                  . == "Somewhat disagree" ~ 2,
-                  . == "Neither agree nor disagree" ~ 3,
-                  . == "Somewhat agree" ~ 4,
-                  . == "Strongly agree" ~ 5)),
-         attn = case_when(
-           attn == "Somewhat disagree" ~ 1,
-           attn != "Somewhat disagree" ~ 0
-         ),
-         q13 = case_when(
-           q13 == "Strongly Disagree" ~ 1,
-           q13 == "Disagree" ~ 2,
-           q13 == "Somewhat Disagree" ~ 3,
-           q13 == "Somewhat Agree" ~ 4, 
-           q13 == "Agree" ~ 5
-         )
-  )
+df <- data.table::fread("data/raw/02_study2_data.csv")
 
 # Inspect time & ReCaptcha Data
 df %>% 
@@ -61,10 +39,22 @@ df %>%
             IQR = IQR(value,na.rm = TRUE),
             min = min(value, na.rm = TRUE),
             max = max(value, na.rm = TRUE))
+
+df %>% 
+  pivot_longer(c(q1:q12, q13:q45)) %>% 
+  group_by(name) %>% 
+  summarize(mean = mean(value,na.rm = TRUE),
+            sd = sd(value,na.rm = TRUE),
+            median = median(value,na.rm = TRUE),
+            IQR = IQR(value,na.rm = TRUE),
+            min = min(value, na.rm = TRUE),
+            max = max(value, na.rm = TRUE)) %>% View()
   
 
-# Based on this, I'll probably conduct analyses with and without concerning responses
-# in order to identify whether these are affecting overall response quality
+# Clean up responses
+df <- df %>% 
+  mutate(across(c(q5, q10, q11, q12, q14:q45),
+                ~ . - 6))
 
 # Clean demographic fields
 ## Age
@@ -170,8 +160,9 @@ df <-
     .after = "gid2"
   )
 
+
 # Write to file
-write.csv(df, "data/clean/20231020_hr-scale-confirmatory-data.csv")
+write.csv(df, "data/clean/02_study2_data_clean.csv")
 # 
 
 
