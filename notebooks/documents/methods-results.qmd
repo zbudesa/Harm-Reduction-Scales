@@ -1,21 +1,79 @@
 ---
 title: "methods-results"
 format: html
+execute:
+  echo: false
+  messages: false
+  warn: false
 ---
 
+The purpose of these studies was to develop, refine, and provide validity and reliability evidence for scales intended to measure the individuals' harm reduction orientation. We conducted a series of qualitative studies to ensure that individuals who are not familiar with harm reduction orientation shared the intended meaning of the items. We then conducted several sequential quantitative studies to identify and confirm hypothetical factor structures, then to provide validity evidence for our scales.
+
 # Study 1
+
 ## Item Generation
-Item generation was undertaken in several stages. The first step in item generation consisted of items generated in two scales (harm reduction principles and harm reduction strategies) which were drafted by the authors and piloted with harm reduction workers in local training and harm reduction supply distribution evaluation. Following the initial pilot project, we revised and added items to address gaps that had been noted. The items were generated with regard to both the SAMHSA Harm Reduction Framework and the National Harm Reduction Coalation's Harm Reduction Principles(\href{https://harmreduction.org/about-us/principles-of-harm-reduction/}{link}). Once the initial item pool was generated, we consulted with Dr. David Frank, a harm reduction expert and researcher. Based on his consultation, items were further modified to be accessible to a general population. 
+
+Item generation was undertaken in several stages. The first step in item generation consisted of items generated in two scales (harm reduction principles and harm reduction strategies) which were drafted by the authors and piloted with harm reduction workers in local training and harm reduction supply distribution evaluation. Following the initial pilot project, we revised and added items to address gaps that had been noted. The items were generated with regard to both the SAMHSA Harm Reduction Framework (cite) and the National Harm Reduction Coalition's Harm Reduction Principles (\href{https://harmreduction.org/about-us/principles-of-harm-reduction/}{link}). Once the initial item pool was generated, we consulted with Dr. David Frank, a harm reduction expert and researcher. Based on his consultation, items were further modified to be accessible to a general population.
+
 We used Wolf et al's (2023) Response Process Evaluation (RPE) method to ensure that a non-expert, non-harm reduction audience would understand the item content. Over X rounds of data collection, we used Prolific to collect qualitative responses to each item. As a group, we evaluated each set of responses to determine whether respondents understood or did not understand the intended meaning of each item. Based on respondent answers and suggestions, we identified items which items were generally understood, and which items should be modified or removed. The RPE data, item information and intended meanings, and author codings are available at \href{osf.io}{osf link goes here}. Table 1 contains the final items that were used for the initial round of quantitative data collection.
-This item pool contained 45 items related to harm reduction strategies and Y items related to harm reduction principals. There are z total reverse scored items (x in scale 1, y in scale 2). These items cover a, b, c, concepts relate to harm reduction practice. We phrased strategy items to ask about respondents moral assessment of the practice occurring, rather than to ask about the approval of the actual practice. We phrased the principal items as simply and directly as possible, occasionally splitting complex topics (experiences of discrimination, other topic) across multiple items when necessary. 
-The aim of study 1 is to identify items to retain in future scales and scale factor structure.
-## Methods
-We recruited 301 participants from Prolific. 
+
+The final item pool contained 45 items related to harm reduction strategies and Y items related to harm reduction principals. There are z total reverse scored items (x in scale 1, y in scale 2). These items cover a, b, c, concepts relate to harm reduction practice. We phrased strategy items to ask about respondents moral assessment of the practice occurring, rather than to ask about the approval of the actual practice. We phrased the principal items as simply and directly as possible, occasionally splitting complex topics (experiences of discrimination, other topic) across multiple items when necessary. The aim of study 1 is to identify items to retain in future scales and scale factor structure.
 
 ```{r}
+library(psych)
+library(tidyverse,
+        verbose = FALSE,
+        quietly = TRUE)
+library(gt)
+library(gtsummary)
 
+items <- 
+  data.table::fread(
+    paste0(here::here(),
+           "/references/codebooks/20231011_hr-scale-codebook.csv"),
+    header = TRUE)
+
+items <- items %>% 
+  filter(
+    grepl("q", var_label)) %>% 
+  mutate(item = 
+           str_remove_all(item, pattern = '\r\n')) %>% 
+  select(-1)
+  
+items %>% 
+  select(-var_label) %>% 
+  gt() %>% 
+  tab_header(
+    title = "Table 1: Initial Item Set"
+  ) %>% 
+  cols_label(
+    item = "Item"
+  )
 ```
 
+## Methods
 
+We recruited 301 participants from Prolific. These participants were 50% men (n = 149), 70% White (n = 210), 41% had completed a bachelor's degree (n = 122), 88% reported no history of a substance use disorder (SUD) diagnosis, and had an average age of 36. Table 2 provides additional detail about this sample. Each participant was
 
+```{r}
+study1 <- 
+  data.table::fread(
+    paste0(here::here(),
+           "/data/osf/01_study1_data.csv"),
+    header = TRUE)
 
+study1.demos <- study1 %>% 
+  select(age, gid1, race, ed, sud_hx) %>% 
+  tbl_summary(
+    missing = "no",
+    statistic = list(age = "{mean} ({sd})"),
+    digits = list(age ~ c(2,2)),
+    sort = list(everything() ~ "frequency"),
+    label = list(
+      age ~ "Age", gid1 ~ "Gender Identity",
+      race ~ "Race/Ethnicity", ed ~ "Highest Level of Education",
+      sud_hx ~ "History of Substance Use Disorder Diagnosis")
+              ) %>% 
+  as_gt() %>% 
+  tab_header(title = "Table 2: Study 1 Participants")
+```
